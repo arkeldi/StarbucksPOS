@@ -1,3 +1,23 @@
 * {
   font-family: Lato;
 }
+.left1{
+  background-color: #C1E7D9;
+  text: New Spring Drinks;
+  height: 300px;
+  image: 'https://www.starbucks.com/weblx/images/spring-21/spring-21-cold-beverage.jpg';
+  link: 'https://www.starbucks.com/menu';
+}
+.left2{
+  background-color: #8ADB9B;
+  height: 500px;
+  image: 'https://www.starbucks.com/weblx/images/easter/easter-chick.jpg';
+  link: 'https://www.starbucks.com/menu';
+}
+.left3{
+  background-color: #EBBECB;
+  /* text: 'Limited Time Offer'; */
+  height: 300px;
+  image: 'https://www.starbucks.com/weblx/images/happy-hour/happy-hour-desktop.jpg';
+  link: 'https://www.starbucks.com/menu';
+}
