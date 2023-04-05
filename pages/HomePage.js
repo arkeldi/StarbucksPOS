@@ -5,31 +5,30 @@ import Title from '../components/Title'
 
 const HomePage = props => {
   const banners = [    
-
-  {color: '#C1E7D9',
-        height: '300px', 
-  link: 'https://www.starbucks.com/menu' 
-  },   
+  // {color: '#C1E7D9',
+  //       height: '300px', 
+  // link: 'https://www.starbucks.com/menu' 
+  // },   
    
-   {color: '#8ADB9B',      text: 'Easter Treats',      height: '500px',      image: 'https://www.starbucks.com/weblx/images/easter/easter-chick.jpg', 
-     link: 'https://www.starbucks.com/menu'    },  
+  //  {color: '#8ADB9B',      text: 'Easter Treats',      height: '500px',      image: 'https://www.starbucks.com/weblx/images/easter/easter-chick.jpg', 
+  //    link: 'https://www.starbucks.com/menu'    },  
 
-   {      color: '#EBBECB',       image: 'https://www.starbucks.com/weblx/images/happy-hour/happy-hour-desktop.jpg',      link: 'https://www.starbucks.com/menu'    },  
+  //  {      color: '#EBBECB',       image: 'https://www.starbucks.com/weblx/images/happy-hour/happy-hour-desktop.jpg',      link: 'https://www.starbucks.com/menu'    },  
    
 
 
 
 
    
-   {color: '#C1E7D9',
-  text: 'New Spring Drinks',      height: '300px', 
-  image: 'https://www.starbucks.com/weblx/images/spring-21/spring-21-cold-beverage.jpg',
-  link: 'https://www.starbucks.com/menu' 
-  },
+  //  {color: '#C1E7D9',
+  // text: 'New Spring Drinks',      height: '300px', 
+  // image: 'https://www.starbucks.com/weblx/images/spring-21/spring-21-cold-beverage.jpg',
+  // link: 'https://www.starbucks.com/menu' 
+  // },
 
-  {      color: '#8ADB9B',       height: '500px',      image: 'https://www.starbucks.com/weblx/images/easter/easter-chick.jpg',      link: 'https://www.starbucks.com/menu'    },  
+  // {      color: '#8ADB9B',       height: '500px',      image: 'https://www.starbucks.com/weblx/images/easter/easter-chick.jpg',      link: 'https://www.starbucks.com/menu'    },  
 
-   {      color: '#EBBECB',     height: '300px', text: 'Limited Time Offer',      image: 'https://www.starbucks.com/weblx/images/happy-hour/happy-hour-desktop.jpg',      link: 'https://www.starbucks.com/menu'    },
+  //  {      color: '#EBBECB',     height: '300px', text: 'Limited Time Offer',      image: 'https://www.starbucks.com/weblx/images/happy-hour/happy-hour-desktop.jpg',      link: 'https://www.starbucks.com/menu'    },
   ];
 
   const leftBanners = banners.slice(0, Math.ceil(banners.length / 2));
@@ -37,16 +36,9 @@ const HomePage = props => {
 
   return (
     <HomePageWrapper>
-      <Title>Starbucks Home</Title>
+      {/* <Title>Starbucks Home</Title> */}
       <BannerContainer>
         <LeftBannerContainer>
-          {/* {leftBanners.map(banner => ( */}
-            {/* // <Banner key={banner.text} color={banner.color} height={banner.height}>
-            //   <a href={banner.link}>
-            //     <img src={banner.image} alt={banner.text} />
-            //     <BannerText>{banner.text}</BannerText>
-            //   </a>
-            // </Banner> */}
             <Banner className='left1'>
               <a href='https://www.starbucks.com/menu'>
                 <BannerText></BannerText>
@@ -54,7 +46,7 @@ const HomePage = props => {
             </Banner>
             <Banner className='left2'>
               <a href='https://www.starbucks.com/menu'>
-                <BannerText>Easter Treats</BannerText>
+                <BannerText className='textleft2'>New Easter Treats</BannerText>
               </a>
             </Banner>
             <Banner className='left3'>
@@ -62,17 +54,23 @@ const HomePage = props => {
                 <BannerText></BannerText>
               </a>
             </Banner>
-            
         </LeftBannerContainer>
         <RightBannerContainer>
-          {rightBanners.map(banner => (
-            <Banner key={banner.text} color={banner.color} height={banner.height}>
-              <a href={banner.link}>
-                <img src={banner.image} alt={banner.text} />
-                <BannerText>{banner.text}</BannerText>
+        <Banner className='right1'>
+              <a href='https://www.starbucks.com/menu'>
+                <BannerText className='textright1'>Savory Breakfast</BannerText>
               </a>
             </Banner>
-          ))}
+            <Banner className='right2'>
+              <a href='https://www.starbucks.com/menu'>
+                <BannerText></BannerText>
+              </a>
+            </Banner>
+            <Banner className='right3'>
+              <a href='https://www.starbucks.com/menu'>
+                <BannerText className='textright3'>Limited Time Offers</BannerText>
+              </a>
+            </Banner>
         </RightBannerContainer>
       </BannerContainer>
     </HomePageWrapper>
