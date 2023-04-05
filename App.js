@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import Login from './pages/Login';
 import CreateAccount from './pages/CreateAccount';
+import Menu from './pages/Menu';
+import Product from './pages/Product';
 import PageNotFound from './pages/PageNotFound';
 
 const App = ({ className }) => (
@@ -17,6 +19,8 @@ const App = ({ className }) => (
       <Route path="/about" component={AboutPage} />
       <Route path="/login" component={Login} />
       <Route path="/createaccount" component={CreateAccount} />
+      <Route path="/menu" component={Menu} />
+      <Route path="/product" component={Product} />
       <Route component={PageNotFound} />
     </Switch>
   </div>
