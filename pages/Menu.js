@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Title from '../components/Title';
 
 const Menu = (props) => (
+  
   <div>
     <div style={{
       backgroundColor: '#1e3932',
@@ -664,6 +665,35 @@ const Menu = (props) => (
     </div>
   </div>
 );
+document.addEventListener("DOMContentLoaded", function() {
+  // Set the scrolling interval in milliseconds
+  const SCROLL_INTERVAL = 5000;
+
+  // Set the scrolling distance in pixels
+  const SCROLL_DISTANCE = 300;
+
+  // Get the page height
+  const pageHeight = document.body.scrollHeight;
+
+  // Initialize the current scroll position
+  let currentScrollPosition = 0;
+
+  // Define the scrolling function
+  function scrollPage() {
+    // Scroll to the next position
+    currentScrollPosition += SCROLL_DISTANCE;
+    if (currentScrollPosition >= pageHeight) {
+      currentScrollPosition = 0;
+    }
+    window.scrollTo({
+      top: currentScrollPosition,
+      behavior: 'smooth'
+    });
+  }
+
+  // Start the scrolling interval
+  setInterval(scrollPage, SCROLL_INTERVAL);
+});
 
 export default styled(Menu)`
 
