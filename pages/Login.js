@@ -68,7 +68,23 @@ const Login = () => {
 
   return (
     <LoginContainer>
+      <div style={{
+      backgroundColor: '#1e3932',
+      height: '100px',
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      zIndex: 1,
+      textAlign: 'center',
+    }}></div>
+    <div style={{ marginTop: '100px', marginBottom: '100px', padding: '15px' }}></div>
       <LoginForm onSubmit={handleSubmit}>
+      <img
+  src={require('./logo.png')}
+  alt="Logo"
+  style={{ width: '5%', position: 'absolute', top: '10px', right: '10px', zIndex:20 }}
+/>
         <h2>Login</h2>
         <Input
           type="text"
@@ -86,6 +102,17 @@ const Login = () => {
         {error && <ErrorText>{error}</ErrorText>}
         {success && <p>Login successful!</p>}
       </LoginForm>
+      <div style={{
+      backgroundColor: '#1e3932',
+      height: '50px',
+      position: 'fixed',
+      bottom: 0,
+      left: 0,
+      width: '100%',
+      zIndex: 100,
+      textAlign: 'center',
+    }}>
+    </div>
     </LoginContainer>
   );
 };
