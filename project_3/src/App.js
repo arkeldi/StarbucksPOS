@@ -12,6 +12,7 @@ import Manager from './pages/Manager';
 import Table from './pages/Table';
 import Menu from './pages/Menu';
 import Product from './pages/Product';
+import Order from './pages/Order';
 
 const App = ({ className }) => (
   <div className={className}>
@@ -25,6 +26,7 @@ const App = ({ className }) => (
     <Route path="/product" element={<Product />} />
     <Route path='/table' element={<Table />} />
     <Route path="/menu" element={<Menu />} />
+    <Route path="/order" element={<Order />} />
     <Route element={PageNotFound} />
     </Routes>
   </div>

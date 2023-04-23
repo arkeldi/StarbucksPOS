@@ -14,14 +14,14 @@ const Navbar = ({ className }) => {
         <div>
           <NavLink exact to="/">
             <button style={{ border: 'none', background: 'transparent', cursor: 'pointer' }}>
-              <img src={logo} alt="Home" style={{ width: '55px', height: '55px', marginTop: '15px' }} />
+              <img src={logo} alt="Home" style={{ width: '55px', height: '55px', marginTop: '15px', marginLeft: '20px'}} />
             </button>
           </NavLink>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'space-between', marginTop: '15px' }}>
           <ul style={{ listStyle: 'none', display: 'flex', alignItems: 'center', margin: '0', padding: '0' }}>
             <li>
-              <NavLink to="/product" style={{ fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '16px' }}>MENU</NavLink>
+              <NavLink to="/order" style={{ fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '16px', marginLeft: '20px' }}>MENU</NavLink>
             </li>
           </ul>
           <div style={{ marginRight: '50px' }}>
@@ -36,9 +36,7 @@ const Navbar = ({ className }) => {
                 fontSize: '16px',
                 borderRadius: '50px',
                 padding: '10px 20px',
-              }}
-              onClick={handleLogin} // add onClick attribute and pass the handleLogin function
-            >
+              }} onClick={handleLogin}>
               Log In
             </button>
           </div>
