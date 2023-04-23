@@ -24,6 +24,7 @@ const Menu = (props) => (
       <Title style={{ color: 'white' }}>Menu</Title>
     </div>
     <div style={{ marginTop: '100px', marginBottom: '100px', padding: '30px' }}>
+      <h5>
       <h2 style={{ textAlign: 'center', fontSize: 35 }}>Hot and Iced Espresso Beverages</h2>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 30px' }}>
@@ -100,8 +101,13 @@ const Menu = (props) => (
           <h3 style={{ textAlign: 'center' }}>Espresso Con Panna</h3>
           </a>
         </div>
-        
+      
       </div>
+      </h5>
+
+
+
+      <h5>
       <h4 style={{ textAlign: 'center', fontSize: 35 }}>Brewed Coffee</h4>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 30px' }}>
@@ -128,13 +134,11 @@ const Menu = (props) => (
           <h3 style={{ textAlign: 'center' }}>Black</h3>
           </a>
         </div>
-        
-        
       </div>
+      </h5>
 
 
-
-
+      <h5>
       <h2 style={{ textAlign: 'center', fontSize: 35 }}>Hot Beverage</h2>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 30px' }}>
@@ -183,12 +187,13 @@ const Menu = (props) => (
         </div>
         
       </div>
+      </h5>
 
 
 
 
 
-
+      <h5>
       <h2 style={{ textAlign: 'center', fontSize: 35 }}>Iced Tea</h2>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 30px' }}>
@@ -222,9 +227,10 @@ const Menu = (props) => (
           </a>
         </div>
       </div>
+      </h5>
 
 
-
+      <h5>
       <h2 style={{ textAlign: 'center', fontSize: 35 }}>Iced Coffee</h2>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 30px' }}>
@@ -252,12 +258,13 @@ const Menu = (props) => (
           </a>
         </div>
       </div>
+      </h5>
 
 
 
 
 
-
+      <h5>
       <h2 style={{ textAlign: 'center', fontSize: 35 }}>Coffee Based Frapuccinos</h2>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 30px' }}>
@@ -311,12 +318,12 @@ const Menu = (props) => (
           </a>
         </div>
       </div>
+      </h5>
 
 
 
 
-
-
+      <h5>
       <h2 style={{ textAlign: 'center', fontSize: 35 }}>Creme Frappuccino</h2>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 30px' }}>
@@ -350,9 +357,9 @@ const Menu = (props) => (
           </a>
         </div>
       </div>
+      </h5>
 
-
-
+      <h5>
       <h2 style={{ textAlign: 'center', fontSize: 35 }}>Smoothie</h2>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 30px' }}>
@@ -392,11 +399,11 @@ const Menu = (props) => (
           </a>
         </div>
       </div>
+      </h5>
 
 
 
-
-
+      <h5>
       <h2 style={{ textAlign: 'center', fontSize: 35 }}>Beverages</h2>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 30px' }}>
@@ -462,10 +469,10 @@ const Menu = (props) => (
           </a>
         </div>
       </div>
+      </h5>
 
 
-
-
+      <h5>
       <h2 style={{ textAlign: 'center', fontSize: 35 }}>Food</h2>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 30px' }}>
@@ -613,8 +620,12 @@ const Menu = (props) => (
           </a>
         </div>
       </div>
+      </h5>
 
 
+
+
+      <h5>
       <h2 style={{ textAlign: 'center', fontSize: 35 }}>Items</h2>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 30px' }}>
@@ -648,7 +659,7 @@ const Menu = (props) => (
           </a>
         </div>
       </div>
-
+      </h5>
 
     </div>
     
@@ -669,20 +680,24 @@ document.addEventListener("DOMContentLoaded", function() {
   // Set the scrolling interval in milliseconds
   const SCROLL_INTERVAL = 5000;
 
-  // Set the scrolling distance in pixels
-  const SCROLL_DISTANCE = 300;
+  // Get all the h5 tags in the document
+  const h5Tags = document.getElementsByTagName("h5");
+  const numh5Tags = h5Tags.length;
 
-  // Get the page height
-  const pageHeight = document.body.scrollHeight;
-
-  // Initialize the current scroll position
+  // Set the current h5 tag index and scroll position
+  let currentTagIndex = 0;
   let currentScrollPosition = 0;
 
   // Define the scrolling function
   function scrollPage() {
-    // Scroll to the next position
-    currentScrollPosition += SCROLL_DISTANCE;
-    if (currentScrollPosition >= pageHeight) {
+    // Check if there are still h5 tags to scroll to
+    if (currentTagIndex < numh5Tags) {
+      // Scroll to the next h5 tag
+      currentScrollPosition = h5Tags[currentTagIndex].offsetTop;
+      currentTagIndex++;
+    } else {
+      // Reset the current h5 tag index and scroll position to the beginning
+      currentTagIndex = 0;
       currentScrollPosition = 0;
     }
     window.scrollTo({
@@ -694,6 +709,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // Start the scrolling interval
   setInterval(scrollPage, SCROLL_INTERVAL);
 });
+
 
 export default styled(Menu)`
 
