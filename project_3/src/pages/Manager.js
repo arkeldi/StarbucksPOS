@@ -84,7 +84,7 @@ const Manager = () => {
       >
       <img src={require('./logo.png')} alt="Logo" style={{ width: '5%' }} />
       </div>
-      <div style={{ marginTop: '150px' }}>
+      <div style={{ marginTop: '150px', marginLeft: '300px'}}>
         <div style={{ display: 'flex' }}>
           {tabs.map((tab) => (
             <div

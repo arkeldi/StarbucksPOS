@@ -9,6 +9,9 @@ import Login from './pages/Login';
 import CreateAccount from './pages/CreateAccount';
 import PageNotFound from './pages/PageNotFound';
 import Manager from './pages/Manager';
+import Table from './pages/Table';
+import Menu from './pages/Menu';
+import Product from './pages/Product';
 
 const App = ({ className }) => (
   <div className={className}>
@@ -19,6 +22,9 @@ const App = ({ className }) => (
     <Route path='/login' element={<Login/>} />
     <Route path='/createaccount' element={<CreateAccount/>} />
     <Route path='/manager' element={<Manager />} />
+    <Route path="/product" element={<Product />} />
+    <Route path='/table' element={<Table />} />
+    <Route path="/menu" element={<Menu />} />
     <Route element={PageNotFound} />
     </Routes>
   </div>

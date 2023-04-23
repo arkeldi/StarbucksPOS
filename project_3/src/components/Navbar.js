@@ -1,17 +1,61 @@
 import React from 'react';
 import NavLink from './NavLink';
 import styled from 'styled-components';
+import logo from '../images/logo.png';
+const Navbar = ({ className }) => {
 
-const Navbar = ({ className }) => (
-  <nav className={className}>
-    <NavLink exact to="/">Home</NavLink>
-    <NavLink to='AboutPage'>About</NavLink>
-    <NavLink to="Login">Login</NavLink>
-    <NavLink to="createaccount">Create Account</NavLink>
-    <NavLink to='Manager'>Manager</NavLink>
-  </nav>
-); 
+  const handleLogin = () => {
+    window.location.href = "/login";
+  };
+
+  return (
+    <nav className={className}>
+      <div style={{ display: 'flex', alignItems: 'center'}}>
+        <div>
+          <NavLink exact to="/">
+            <button style={{ border: 'none', background: 'transparent', cursor: 'pointer' }}>
+              <img src={logo} alt="Home" style={{ width: '55px', height: '55px', marginTop: '15px' }} />
+            </button>
+          </NavLink>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'space-between', marginTop: '15px' }}>
+          <ul style={{ listStyle: 'none', display: 'flex', alignItems: 'center', margin: '0', padding: '0' }}>
+            <li>
+              <NavLink to="/product" style={{ fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '16px' }}>MENU</NavLink>
+            </li>
+          </ul>
+          <div style={{ marginRight: '50px' }}>
+            <button 
+              style={{ 
+                border: 'none', 
+                background: 'black',
+                color: 'white',
+                cursor: 'pointer', 
+                fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', 
+                fontWeight: 'bold', 
+                fontSize: '16px',
+                borderRadius: '50px',
+                padding: '10px 20px',
+              }}
+              onClick={handleLogin} // add onClick attribute and pass the handleLogin function
+            >
+              Log In
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
 export default styled(Navbar)`
-
+  border-bottom: 1px solid #ccc; /* adds a 1px solid border at the bottom of the Navbar */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* adds a box-shadow to the Navbar */
+  height: 100px;
+  width: 100%;
+  margin: 0;
 `;
+
+
+
+
