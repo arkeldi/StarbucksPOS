@@ -61,6 +61,7 @@ const Product = (props) => {
           <OptionsCustomDiv>
             <CustomText>Customizations</CustomText>
               <div >
+                
                 <button onClick={handleButtonClick} style={{ cursor: 'pointer', justifyContent: 'space-between', display: 'flex', margin: '60px 0 30px 0', width: '410px', height: '50px', borderRadius: '10px', background: 'white'}}>
                   <span style={{ margin: 'auto 10px', fontSize: '18px', fontFamily: 'Helvetica Neue, sans-serif'}}>Decaf</span> 
                   <span style={{ margin: 'auto 10px', fontSize: '18px', fontFamily: 'Helvetica Neue, sans-serif'}}>Edit</span> 
@@ -85,15 +86,64 @@ const Product = (props) => {
           </OptionsCustomDiv>
         </OptionsDiv>
         <Overlay showOverlay={showOverlay}>
-          <CloseButton onClick={handleCloseClick}>X</CloseButton>
-          <DoneButton onClick={handleCloseClick}>Done</DoneButton>
+          <CloseButton onClick={handleCloseClick}>
+            <div className="leftright"></div>
+            <div className="rightleft"></div>
+            <label className="close">close</label>
+          </CloseButton>
+          <selectionDiv style={{display: 'flex', backgroundColor: 'pink', height: '900px', width: '500px', margin: 'auto'}} >
+            <customOrderText style={{fontSize: '32px', fontFamily: 'Helvetica Neue, sans-serif', fontWeight: 'bold'}}>Customizations</customOrderText>
+          </selectionDiv>
+          <DoneButton
+          style={{ 
+            border: 'none', 
+            background: '#00754a',
+            color: 'white',
+            cursor: 'pointer',
+            height: '50px',
+            fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', 
+            fontWeight: 'bold', 
+            fontSize: '16px',
+            borderRadius: '50px',
+            padding: '10px 20px',
+            marginRight: '20px',
+            marginBottom: '20px',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+          }}
+           onClick={handleCloseClick}>Done</DoneButton>
         </Overlay>
       </CustomizationDiv>
       <InfoDiv>
         <text style={{ color: 'white', fontSize: '18px', textAlign: 'center' }}> Americano is a shot of espresso with hot water added. It has a rich and bold flavor.</text>
       </InfoDiv>
-      <EndDiv>
-
+      <EndDiv >
+          <div style={{
+            display: 'flex',
+            width: '1200px',
+            height: '300px',
+            border: 'none', 
+            background: 'pink'}} >
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                width: '50%',
+                height: '200px',
+                border: 'none', 
+                background: 'white'}}> 
+                  <a style={{ fontWeight: 'bold', fontSize: '28px', marginBottom: '25px' }}>About Us</a>
+                  <a style={{ cursor: 'pointer', fontSize: '20px', marginBottom: '20px'}} onClick={() => alert('Our Company pop-up window')}>Our Company</a>
+                  <a style={{ cursor: 'pointer', fontSize: '20px', marginBottom: '20px' }} onClick={() => alert('Our Coffee pop-up window')}>Our Coffee</a>
+                  <a style={{ cursor: 'pointer', fontSize: '20px' }} onClick={() => alert('Contact pop-up window')}>Contact</a>
+                </div>
+              <div style={{
+                display: 'flex',
+                width: '50%',
+                height: '200px',
+                border: 'none', 
+                background: 'blue'}}> 
+              
+              </div>
+            </div>
       </EndDiv>
       <BottomDiv>
         <button 
@@ -138,10 +188,13 @@ const InfoDiv = styled.div`
 `;
 
 const EndDiv = styled.div`
-  height: 330px;
+  height: 430px;
   width: 100%;
   background-color: white;
+  margin: auto;
   margin-top: 50px;
+  display: flex;
+  justify-content: center;
 `;
 
 const BottomDiv = styled.div`
@@ -276,10 +329,62 @@ const Overlay = styled.div`
     showOverlay ? 'translateX(0)' : 'translateX(100%)'};
 `;
 
-const CloseButton = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 10px;
+const CloseButton = styled.div`
+  position: relative;
+  margin: auto;
+  width: 30px;
+  height: 30px;
+  margin-top: 30px;
+  margin-right: 50px;
+  cursor: pointer;
+
+  .leftright {
+    height: 4px;
+    width: 30px;
+    position: absolute;
+    margin-top: 24px;
+    background-color: #00754a;
+    border-radius: 2px;
+    transform: rotate(45deg);
+    transition: all .3s ease-in;
+  }
+
+  .rightleft {
+    height: 4px;
+    width: 30px;
+    position: absolute;
+    margin-top: 24px;
+    background-color: #00754a;
+    border-radius: 2px;
+    transform: rotate(-45deg);
+    transition: all .3s ease-in;
+  }
+
+  .close {
+    color: black;
+    font-family: Helvetica, Arial, sans-serif; 
+    font-size: .6em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all .3s ease-in;
+    opacity: 0;
+    margin: 50px 0 0px -2.5px;
+    position: absolute;
+  }
+
+  &:hover .leftright {
+    transform: rotate(-45deg);
+    background-color: #1e3932;
+  }
+
+  &:hover .rightleft {
+    transform: rotate(45deg);
+    background-color: #1e3932;
+  }
+
+  &:hover .close {
+    opacity: 1;
+  }
 `;
 
 const DoneButton = styled.button`
