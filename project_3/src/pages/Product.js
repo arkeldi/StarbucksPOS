@@ -34,6 +34,7 @@ const Product = (props) => {
     setShowOverlay(false);
   };
 
+  
   return (
     <>
       <div style={{marginTop: '20px'}}>
@@ -114,15 +115,27 @@ const Product = (props) => {
         </Overlay>
       </CustomizationDiv>
       <InfoDiv>
-        <text style={{ color: 'white', fontSize: '18px', textAlign: 'center' }}> Americano is a shot of espresso with hot water added. It has a rich and bold flavor.</text>
+        <div style={{height:"80px", width: '80px', marginRight: '100px'}}>
+          <img src={require('../images/logo.png')} style={{ width: '80px'}}/>   
+        </div>
+        <div>
+          <text style={{ color: 'white', fontSize: '18px', textAlign: 'center' }}> Americano is a shot of espresso with hot water added. It has a rich and bold flavor.</text>
+        </div>
       </InfoDiv>
       <EndDiv >
-          <div style={{
+        <div style={{
             display: 'flex',
+            flexFlow: 'column',
             width: '1200px',
             height: '300px',
             border: 'none', 
-            background: 'pink'}} >
+            background: 'white'}}>
+          <div style={{
+            display: 'flex',
+            width: '1200px',
+            height: '200px',
+            border: 'none', 
+            background: 'blue'}} >
               <div style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -130,20 +143,53 @@ const Product = (props) => {
                 height: '200px',
                 border: 'none', 
                 background: 'white'}}> 
-                  <a style={{ fontWeight: 'bold', fontSize: '28px', marginBottom: '25px' }}>About Us</a>
-                  <a style={{ cursor: 'pointer', fontSize: '20px', marginBottom: '20px'}} onClick={() => alert('Our Company pop-up window')}>Our Company</a>
-                  <a style={{ cursor: 'pointer', fontSize: '20px', marginBottom: '20px' }} onClick={() => alert('Our Coffee pop-up window')}>Our Coffee</a>
-                  <a style={{ cursor: 'pointer', fontSize: '20px' }} onClick={() => alert('Contact pop-up window')}>Contact</a>
+                  <a style={{ fontWeight: 'bold', fontSize: '28px', marginBottom: '25px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif' }}>About Us</a>
+                  <a style={{ cursor: 'pointer', fontSize: '20px', marginBottom: '20px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif'}} onClick={() => alert('Our Company pop-up window')}>Our Company</a>
+                  <a style={{ cursor: 'pointer', fontSize: '20px', marginBottom: '20px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif' }} onClick={() => alert('Our Coffee pop-up window')}>Our Coffee</a>
+                  <a style={{ cursor: 'pointer', fontSize: '20px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif' }} onClick={() => alert('Contact pop-up window')}>Contact</a>
                 </div>
               <div style={{
                 display: 'flex',
+                flexFlow: 'column',
                 width: '50%',
                 height: '200px',
                 border: 'none', 
-                background: 'blue'}}> 
-              
+                background: 'white',
+
+                }}> 
+                <a style={{ fontWeight: 'bold', fontSize: '28px', marginBottom: '25px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif' }}>Social Media</a>
+                <div style={{ width: '100%',
+                height: '100px', background: 'white'}} >
+                  <a href="https://open.spotify.com/user/starbucks"><img src={require('../images/spotify.png')} alt="Image 1"></img></a>
+                  <a href="https://www.facebook.com/Starbucks/"><img src={require('../images/fb.png')} alt="Image 2"></img></a>
+                  <a href="https://www.pinterest.com/starbucks/"><img src={require('../images/pinterest.png')}></img></a>
+                  <a href="https://www.instagram.com/starbucks/"><img src={require('../images/insta.png')} alt="Image 4"></img></a>
+                  <a href="https://www.youtube.com/starbucks"><img src={require('../images/youtube.png')} alt="Image 5"></img></a>
+                  <a href="https://twitter.com/starbucks/"><img src={require('../images/twitter.png')} alt="Image 6"></img></a>
+                </div>
               </div>
+              
             </div>
+            <div style={{
+                display: 'flex',
+                flexFlow: 'column',
+                width: '100%',
+                height: '200px',
+                border: 'none', 
+                background: 'white',
+
+                }}>
+                  <div style={{marginBottom: '25px'}} >
+                    <a style={{marginRight: '15px', textDecoration: 'none', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif'}} href="#">Privacy Notice</a>
+                    <text> | </text>
+                    <a style={{marginLeft: '15px', textDecoration: 'none', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif'}} href="#">Terms of Use</a>
+                  </div>
+                  <div>
+                    <text style = {{fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif'}}>© 2023 Starbucks Coffee Company. All rights reserved.</text>
+                  </div>
+                  
+              </div>
+        </div>
       </EndDiv>
       <BottomDiv>
         <button 
