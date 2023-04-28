@@ -1,15 +1,73 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import {GetInventoryList} from '../backend/server_functions';
 
 const Manager = () => {
   const [activeTab, setActiveTab] = useState(0); // Define the active tab state
+  const inventoryData = GetInventoryList(0,0);
 
-  const tabs = [
-    { id: 0, name: 'Inventory', tableData: [ // Define the tabs and their table data
-        { id: 1, name: 'John', age: 28, number: "346-530-4989"},
-        { id: 2, name: 'Jane', age: 32, number: "346-530-4989" },
-        { id: 3, name: 'Joe', age: 21, number: "346-530-4989" },
+  const title = [
+    { id: 0, name: 'Inventory', tableData: []
+    },
+    { id: 1, name: 'Transactions', tableData: [
+        { id: 1, name: 'Bob', age: 45 },
+        { id: 2, name: 'Alice', age: 36 },
+        { id: 3, name: 'Mark', age: 29 },
       ] },
+    { id: 2, name: 'Products', tableData: [
+        { id: 1, name: 'Sam', age: 52 },
+        { id: 2, name: 'Sara', age: 31 },
+        { id: 3, name: 'Tom', age: 24 },
+      ] },
+    { id: 3, name: 'Customizations', tableData: [
+      { id: 1, name: 'Sam', age: 52 },
+      { id: 2, name: 'Sara', age: 31 },
+      { id: 3, name: 'Tom', age: 24 },
+    ] },
+    { id: 4, name: 'Sales', tableData: [
+      { id: 1, name: 'Sam', age: 52 },
+      { id: 2, name: 'Sara', age: 31 },
+      { id: 3, name: 'Tom', age: 24 },
+    ] },
+    { id: 5, name: 'Orders', tableData: [
+      { id: 1, name: 'Sam', age: 52 },
+      { id: 2, name: 'Sara', age: 31 },
+      { id: 3, name: 'Tom', age: 24 },
+    ] },
+    { id: 6, name: 'Employees', tableData: [
+      { id: 1, name: 'Sam', age: 52 },
+      { id: 2, name: 'Sara', age: 31 },
+      { id: 3, name: 'Tom', age: 24 },
+    ] },
+    { id: 7, name: 'Customers', tableData: [
+      { id: 1, name: 'Sam', age: 52 },
+      { id: 2, name: 'Sara', age: 31 },
+      { id: 3, name: 'Tom', age: 24 },
+    ] },
+    { id: 8, name: 'Recipes', tableData: [
+      { id: 1, name: 'Sam', age: 52 },
+      { id: 2, name: 'Sara', age: 31 },
+      { id: 3, name: 'Tom', age: 24 },
+    ] },
+    { id: 9, name: 'Sizes', tableData: [
+      { id: 1, name: 'Sam', age: 52 },
+      { id: 2, name: 'Sara', age: 31 },
+      { id: 3, name: 'Tom', age: 24 },
+    ] },
+    { id: 10, name: 'Reports', tableData: [
+      { id: 1, name: 'Sam', age: 52 },
+      { id: 2, name: 'Sara', age: 31 },
+      { id: 3, name: 'Tom', age: 24 },
+    ] },
+  ];
+  const tabs = [
+    { id: 0, name: 'Inventory', tableData: inventoryData
+      // [ // Define the tabs and their table data
+      //   { id: 1, name: 'John', age: 28, number: "346-530-4989"},
+      //   { id: 2, name: 'Jane', age: 32, number: "346-530-4989" },
+      //   { id: 3, name: 'Joe', age: 21, number: "346-530-4989" },
+      // ] 
+    },
     { id: 1, name: 'Transactions', tableData: [
         { id: 1, name: 'Bob', age: 45 },
         { id: 2, name: 'Alice', age: 36 },
@@ -114,13 +172,20 @@ const Manager = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {tab.tableData.map((data) => (
+                  {/* {tab.tableData.map((data) => (
                     <tr key={data.id}>
                       <td>{data.id}</td>
                       <td>{data.name}</td>
                       <td>{data.age}</td>
                       <td>{data.number}</td>
                     </tr>
+                  ))} */}
+                  {tab.tableData.map((data) => (
+                      <tr key={data.id}>
+                          {Object.keys(data).map((key) => (
+                              <td key={key}>{data[key]}</td>
+                          ))}
+                      </tr>
                   ))}
                 </tbody>
               </table>
