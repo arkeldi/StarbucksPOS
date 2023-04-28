@@ -108,7 +108,7 @@ const Menu = (props) => (
 
 
       <h5>
-      <h4 style={{ textAlign: 'center', fontSize: 35 }}>Brewed Coffee</h4>
+      <h2 style={{ textAlign: 'center', fontSize: 35 }}>Brewed Coffee</h2>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 30px' }}>
         <a href="/products">
@@ -676,7 +676,7 @@ const Menu = (props) => (
     </div>
   </div>
 );
-document.addEventListener("DOMContentLoaded", function() {
+/*document.addEventListener("DOMContentLoaded", function() {
   // Set the scrolling interval in milliseconds
   const SCROLL_INTERVAL = 5000;
 
@@ -708,7 +708,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Start the scrolling interval
   setInterval(scrollPage, SCROLL_INTERVAL);
-});
+});*/
 
 
 export default styled(Menu)`
