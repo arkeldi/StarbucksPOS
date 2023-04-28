@@ -1,7 +1,9 @@
 const express = require('express');
 const { Pool } = require('pg');
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
 
 const pool = new Pool({
     'host': 'csce-315-db.engr.tamu.edu',
