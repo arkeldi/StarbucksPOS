@@ -22,7 +22,7 @@ const Navbar = ({ className }) => {
           <ul style={{ listStyle: 'none', display: 'flex', alignItems: 'center', margin: '0', padding: '0' }}>
             <li>
               <NavLink to="/" style={{ fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '16px', marginLeft: '20px' }}>HOME</NavLink>
-              <NavLink to="/product" style={{ fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '16px', marginLeft: '20px' }}>MENU</NavLink>
+              <NavLink to="/menu" style={{ fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '16px', marginLeft: '20px' }}>MENU</NavLink>
 
             </li>
           </ul>

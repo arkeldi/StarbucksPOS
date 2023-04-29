@@ -146,7 +146,6 @@ const HomePage = props => {
       </div>
 
       <div style={{display: 'flex', width: '1290px', height: '350px', backgroundColor: '#1e3932', margin: '30px auto'}}>
-
         <div style={{display: 'flex', flexFlow: 'column', width: '1000px', justifyContent: 'center', alignItems: 'center'}} >
           <text style={{display: 'flex', color: 'white', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '36px'}}> Delivery delight </text>
           <text style={{fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', color: 'white', marginTop: '30px', fontSize: '20px'}}> Brighten your day by getting your favorite order on Uber Eats.</text>
@@ -165,6 +164,7 @@ const HomePage = props => {
             padding: '10px 20px',
             transition: 'background-color 0.2s ease-in-out',
           }}
+          onClick={() => window.location.href = "https://www.ubereats.com/brand/starbucks?&utm_campaign=bd-starbucks-US-spring23_Owned_.com_US&utm_source=starbucks&utm_medium=Web&publisher=Uber%20Eats%20-%20BD%20(Biz%20Dev)%20-%20Partnerships&publisher_sub_campaign_name=bd-starbucks-US-spring23_Owned_.com_US"}
           onMouseOver={(e) => {
             e.target.style.background = '#162823';
           }}
@@ -260,7 +260,9 @@ const HomePage = props => {
             borderRadius: '50px',
             padding: '10px 20px',
             marginRight: '400px',
-          }}>
+          }}
+          onClick={() => window.location.href = "/product"}
+          >
           Order Now
         </button>
         <BottomButton />
