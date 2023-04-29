@@ -1,31 +1,38 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Route, Switch } from 'react-router-dom';
+// routes
+import Router from './routes';
+// theme
+import ThemeProvider from './theme';
+// components
+import ThemeSettings from './components/settings';
+import { ChartStyle } from './components/chart';
+import ScrollToTop from './components/ScrollToTop';
+import { ProgressBarStyle } from './components/ProgressBar';
+import NotistackProvider from './components/NotistackProvider';
+import MotionLazyContainer from './components/animate/MotionLazyContainer';
 
-import Navbar from './components/Navbar';
-import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import Login from './pages/Login';
-import CreateAccount from './pages/CreateAccount';
-import Menu from './pages/Menu';
-import Product from './pages/Product';
-import PageNotFound from './pages/PageNotFound';
+// Import the Weather component
+import Weather from './Weather';
 
-const App = ({ className }) => (
-  <div className={className}>
-    <Navbar />
-    <Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route path="/about" component={AboutPage} />
-      <Route path="/login" component={Login} />
-      <Route path="/createaccount" component={CreateAccount} />
-      <Route path="/menu" component={Menu} />
-      <Route path="/product" component={Product} />
-      <Route component={PageNotFound} />
-    </Switch>
-  </div>
-);
+// ----------------------------------------------------------------------
 
-export default styled(App)`
+export default function App() {
+  return (
+    <MotionLazyContainer>
+      <ThemeProvider>
+        <ThemeSettings>
+          <NotistackProvider>
+            <ProgressBarStyle />
+            <ChartStyle />
+            <ScrollToTop />
+            <Router />
+            {/* Include the Weather component */}
+            <Weather />
+          </NotistackProvider>
+        </ThemeSettings>
+      </ThemeProvider>
+    </MotionLazyContainer>
+  );
+}
 
-`;
+
+
