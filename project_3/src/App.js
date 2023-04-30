@@ -23,9 +23,9 @@ const App = ({ className }) => (
     <Route path='/login' element={<Login/>} />
     <Route path='/createaccount' element={<CreateAccount/>} />
     <Route path='/manager' element={<Manager />} />
-    <Route path="/product" element={<Product />} />
+    <Route path="/product/:id" element={<Product Prop={2} />} />
     <Route path='/table' element={<Table />} />
-    <Route path="/menu" element={<Menu />} />
+    <Route exact path="/menu" element={<Menu />} />
     <Route path="/order" element={<Order />} />
     <Route element={PageNotFound} />
     </Routes>
