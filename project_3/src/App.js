@@ -30,7 +30,9 @@ const App = ({ className }) => (
     <Route element={PageNotFound} />
     </Routes>
   </div>
+  
 );
+
 
 export default styled(App)`
 `;

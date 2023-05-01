@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 const BottomButton = () => {
   return (
-    <Button >
+    <Link to="/order" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent', color: 'black', border: 'none', borderRadius: '10px', cursor: 'pointer', marginRight: '250px' }}>
       <ButtonImg src={require('../images/bag.jpg')} />
-    </Button>
+    </Link>
   );
 };
 
@@ -381,6 +383,29 @@ const Product = () => {
     descriptionText = 'A ceramic coffee cup with the Texas A&M University logo and colors.';
   }
 
+  const [selectedOptionsArray, setSelectedOptionsArray] = useState([]);
+  const [decafValue, setDecafValue] = useState(null);
+  const [shotsValue, setShotsValue] = useState(null);
+  const [syrupValue, setSyrupValue] = useState(null);
+  const [milkValue, setMilkValue] = useState(null);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const [selectedOptionsTotal, setSelectedOptionsTotal] = useState({
+    selectedOptionsArray: [],
+    decafValue: null,
+    shotsValue: null,
+    syrupValue: null,
+    milkValue: null,
+    selectedOptions: [],
+  });
+
+  const handleOptionChangeTotal = (option, value) => {
+    setSelectedOptions(prevState => ({
+      ...prevState,
+      [option]: value,
+    }));
+  };
+
   const handleSizeButtonClick = (size) => {
     if (size === 'short') {
       setSizeImage(require('../images/product/size_s.png'));
@@ -391,12 +416,14 @@ const Product = () => {
     } else if (size === 'venti') {
       setSizeImage(require('../images/product/size_v.png'));
     }
+    setSelectedOptionsArray(prevState => [...prevState.filter(option => option !== 'short' && option !== 'tall' && option !== 'grande' && option !== 'venti'), size]);
   };
 
   const [showOverlay, setShowOverlay] = useState(false);
 
   const [customTypeText, setCustomText] = useState('Edit');
   const [activeForm, setActiveForm] = useState(null);
+
 
   const handleButtonClick = (buttonType) => {
     switch(buttonType) {
@@ -423,12 +450,15 @@ const Product = () => {
     setShowOverlay(true);
     document.body.style.overflow = 'hidden';
   };
-  
-  const [decafValue, setDecafValue] = useState(null);
-  const [shotsValue, setShotsValue] = useState(null);
-  const [syrupValue, setSyrupValue] = useState(null);
-  const [milkValue, setMilkValue] = useState(null);
-  const [customValue, setCustomValue] = useState(null);
+
+  function handleOptionChange(e) {
+    const value = e.target.value;
+    if (e.target.checked) {
+      setSelectedOptions([...selectedOptions, value]);
+    } else {
+      setSelectedOptions(selectedOptions.filter(option => option !== value));
+    }
+  }
   const renderForm = () => {
     switch (activeForm) {
       case 'decaf':
@@ -445,67 +475,69 @@ const Product = () => {
             </label>
             <br/>
             <label>
-              <input type="radio" name="decaf" value="HalfCaffeinated" checked={decafValue === 'HalfCaffeinated'} onChange={(e) => setDecafValue(e.target.value)} />
+              <input type="radio" name="decaf" value="Half Caffeinated" checked={decafValue === 'Half Caffeinated'} onChange={(e) => setDecafValue(e.target.value)} />
               <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Half Caffeinated</text>
             </label>
             <br/>
             <label>
-              <input type="radio" name="decaf" value="QuarterCaffeinated" checked={decafValue === 'QuarterCaffeinated'} onChange={(e) => setDecafValue(e.target.value)} />
+              <input type="radio" name="decaf" value="Quarter Caffeinated" checked={decafValue === 'Quarter Caffeinated'} onChange={(e) => setDecafValue(e.target.value)} />
               <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Quarter Caffeinated</text>
             </label>
             <br/>
             <label>
-              <input type="radio" name="decaf" value="ThreeQuartersCaffeinated" checked={decafValue === 'ThreeQuartersCaffeinated'} onChange={(e) => setDecafValue(e.target.value)} />
+              <input type="radio" name="decaf" value="Three Quarters Caffeinated" checked={decafValue === 'Three Quarters Caffeinated'} onChange={(e) => setDecafValue(e.target.value)} />
               <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Three Quarters Caffeinated</text>
             </label>
             <br/>
             <label>
-              <input type="radio" name="decaf" value="OneThirdCaffeinated" checked={decafValue === 'OneThirdCaffeinated'} onChange={(e) => setDecafValue(e.target.value)} />
+              <input type="radio" name="decaf" value="One Third Caffeinated" checked={decafValue === 'One Third Caffeinated'} onChange={(e) => setDecafValue(e.target.value)} />
               <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>One Third Caffeinated</text>
             </label>
             <br/>
             <label>
-              <input type="radio" name="decaf" value="TwoThirdsCaffeinated" checked={decafValue === 'TwoThirdsCaffeinated'} onChange={(e) => setDecafValue(e.target.value)} />
+              <input type="radio" name="decaf" value="Two Thirds Caffeinated" checked={decafValue === 'Two Thirds Caffeinated'} onChange={(e) => setDecafValue(e.target.value)} />
               <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Two Thirds Caffeinated</text>
             </label>
           </form>
+          
         );
+        
       case 'shots':
         // render form for shots
         return (
         <form>
             <label>
-              <input type="radio" name="shots" value="StandardRecipeShot" checked={shotsValue === 'StandardRecipeShot'} onChange={(e) => setShotsValue(e.target.value)} />
+              <input type="radio" name="shots" value="Standard Recipe" checked={shotsValue === 'Standard Recipe'} onChange={(e) => setShotsValue(e.target.value)} />
               <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Standard Recipe</text>
             </label>
             <br/>
             <label>
-              <input type="radio" name="shots" value="SoloShot" checked={shotsValue === 'SoloShot'} onChange={(e) => setShotsValue(e.target.value)} />
+              <input type="radio" name="shots" value="Solo Shot" checked={shotsValue === 'Solo Shot'} onChange={(e) => setShotsValue(e.target.value)} />
               <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Solo Shot</text>
             </label>
             <br/>
             <label>
-              <input type="radio" name="shots" value="DoubleShot" checked={shotsValue === 'DoubleShot'} onChange={(e) => setShotsValue(e.target.value)} />
+              <input type="radio" name="shots" value="Double Shot" checked={shotsValue === 'Double Shot'} onChange={(e) => setShotsValue(e.target.value)} />
               <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Double Shot</text>
             </label>
             <br/>
             <label>
-              <input type="radio" name="shots" value="TripleShot" checked={shotsValue === 'TripleShot'} onChange={(e) => setShotsValue(e.target.value)} />
+              <input type="radio" name="shots" value="Triple Shot" checked={shotsValue === 'Triple Shot'} onChange={(e) => setShotsValue(e.target.value)} />
               <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Triple Shot</text>
             </label>
             <br/>
             <label>
-              <input type="radio" name="shots" value="QuadShot" checked={shotsValue === 'QuadShot'} onChange={(e) => setShotsValue(e.target.value)} />
+              <input type="radio" name="shots" value="Quad Shot" checked={shotsValue === 'Quad Shot'} onChange={(e) => setShotsValue(e.target.value)} />
               <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Quad Shot</text>
             </label>
             <br/>
             <label>
-              <input type="radio" name="shots" value="FiveShot" checked={shotsValue === 'FiveShot'} onChange={(e) => setShotsValue(e.target.value)} />
+              <input type="radio" name="shots" value="Five Shot" checked={shotsValue === 'Five Shot'} onChange={(e) => setShotsValue(e.target.value)} />
               <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Five Shot</text>
             </label>
             <br/>
             <label>
-              <input type="radio" name="shots" value="SixShot" checked={shotsValue === 'SixShot'} onChange={(e) => setShotsValue(e.target.value)} />
+              <input type="radio" name="shots" value="Six Shot" checked={shotsValue === 'Six Shot'} onChange={(e) => setShotsValue(e.target.value)} />
               <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Six Shot</text>
             </label>
           </form>
@@ -516,7 +548,7 @@ const Product = () => {
         return (
           <form>
               <label>
-                <input type="radio" name="syrup" value="StandardRecipeSyrup" checked={syrupValue === 'StandardRecipeSyrup'} onChange={(e) => setSyrupValue(e.target.value)} />
+                <input type="radio" name="syrup" value="No Syrup / Standard Recipe" checked={syrupValue === 'No Syrup / Standard Recipe'} onChange={(e) => setSyrupValue(e.target.value)} />
                 <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>No Syrup / Standard Recipe</text>
               </label>
               <br/>
@@ -526,7 +558,7 @@ const Product = () => {
               </label>
               <br/>
               <label>
-                <input type="radio" name="syrup" value="SugarFreeVanilla" checked={syrupValue === 'SugarFreeVanilla'} onChange={(e) => setSyrupValue(e.target.value)} />
+                <input type="radio" name="syrup" value="Sugar Free Vanilla" checked={syrupValue === 'Sugar Free Vanilla'} onChange={(e) => setSyrupValue(e.target.value)} />
                 <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Sugar Free Vanilla</text>
               </label>
               <br/>
@@ -546,7 +578,7 @@ const Product = () => {
               </label>
               <br/>
               <label>
-                <input type="radio" name="syrup" value="ToffeNut" checked={syrupValue === 'ToffeNut'} onChange={(e) => setSyrupValue(e.target.value)} />
+                <input type="radio" name="syrup" value="Toffe Nut" checked={syrupValue === 'Toffe Nut'} onChange={(e) => setSyrupValue(e.target.value)} />
                 <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Toffe Nut</text>
               </label>
               <br/>
@@ -561,12 +593,12 @@ const Product = () => {
               </label>
               <br/>
               <label>
-                <input type="radio" name="syrup" value="WhiteMocha" checked={syrupValue === 'WhiteMocha'} onChange={(e) => setSyrupValue(e.target.value)} />
+                <input type="radio" name="syrup" value="White Mocha" checked={syrupValue === 'White Mocha'} onChange={(e) => setSyrupValue(e.target.value)} />
                 <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>White Mocha</text>
               </label>
               <br/>
               <label>
-                <input type="radio" name="syrup" value="CaramelSauce" checked={syrupValue === 'CaramelSauce'} onChange={(e) => setSyrupValue(e.target.value)} />
+                <input type="radio" name="syrup" value="Caramel Sauce" checked={syrupValue === 'Caramel Sauce'} onChange={(e) => setSyrupValue(e.target.value)} />
                 <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Caramel Sauce</text>
               </label>
               <br/>
@@ -576,22 +608,22 @@ const Product = () => {
               </label>
               <br/>
               <label>
-                <input type="radio" name="syrup" value="ItabercoBlueberry" checked={syrupValue === 'ItabercoBlueberry'} onChange={(e) => setSyrupValue(e.target.value)} />
+                <input type="radio" name="syrup" value="Itaberco Blueberry" checked={syrupValue === 'Itaberco Blueberry'} onChange={(e) => setSyrupValue(e.target.value)} />
                 <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Itaberco Blueberry</text>
               </label>
               <br/>
               <label>
-                <input type="radio" name="syrup" value="ItabercoMango" checked={syrupValue === 'ItabercoMango'} onChange={(e) => setSyrupValue(e.target.value)} />
+                <input type="radio" name="syrup" value="Itaberco Mango" checked={syrupValue === 'Itaberco Mango'} onChange={(e) => setSyrupValue(e.target.value)} />
                 <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Itaberco Mango</text>
               </label>
               <br/>
               <label>
-                <input type="radio" name="syrup" value="ItabercoPomegranate" checked={syrupValue === 'ItabercoPomegranate'} onChange={(e) => setSyrupValue(e.target.value)} />
+                <input type="radio" name="syrup" value="Itaberco Pomegranate" checked={syrupValue === 'Itaberco Pomegranate'} onChange={(e) => setSyrupValue(e.target.value)} />
                 <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Itaberco Pomegranate</text>
               </label>
               <br/>
               <label>
-                <input type="radio" name="syrup" value="ItabercoSeasonal" checked={syrupValue === 'ItabercoSeasonal'} onChange={(e) => setSyrupValue(e.target.value)} />
+                <input type="radio" name="syrup" value="Itaberco Seasonal" checked={syrupValue === 'Itaberco Seasonal'} onChange={(e) => setSyrupValue(e.target.value)} />
                 <text style = {{fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif'}}>Itaberco Seasonal</text>
               </label>
               <br/>
@@ -613,17 +645,17 @@ const Product = () => {
         return (
           <form>
             <label>
-              <input type="radio" name="milk" value="StandardRecipeMilk" checked={milkValue === 'StandardRecipeMilk'} onChange={(e) => setMilkValue(e.target.value)} />
+              <input type="radio" name="milk" value="Standard Recipe" checked={milkValue === 'Standard Recipe'} onChange={(e) => setMilkValue(e.target.value)} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Standard Recipe</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="milk" value="TwoPercent" checked={milkValue === 'TwoPercent'} onChange={(e) => setMilkValue(e.target.value)} />
+              <input type="radio" name="milk" value="Two Percent" checked={milkValue === 'TwoPercent'} onChange={(e) => setMilkValue(e.target.value)} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Two Percent</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="milk" value="NonFat" checked={milkValue === 'NonFat'} onChange={(e) => setMilkValue(e.target.value)} />
+              <input type="radio" name="milk" value="Nonfat (Skim)" checked={milkValue === 'Nonfat (Skim)'} onChange={(e) => setMilkValue(e.target.value)} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Nonfat (Skim)</text>
             </label>
             <br />
@@ -633,7 +665,7 @@ const Product = () => {
             </label>
             <br />
             <label>
-              <input type="radio" name="milk" value="OnePercent" checked={milkValue === 'OnePercent'} onChange={(e) => setMilkValue(e.target.value)} />
+              <input type="radio" name="milk" value="One Percent" checked={milkValue === 'OnePercent'} onChange={(e) => setMilkValue(e.target.value)} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>One Percent</text>
             </label>
             <br />
@@ -643,7 +675,7 @@ const Product = () => {
             </label>
             <br />
             <label>
-              <input type="radio" name="milk" value="HalfHalf" checked={milkValue === 'HalfHalf'} onChange={(e) => setMilkValue(e.target.value)} />
+              <input type="radio" name="milk" value="Half and Half (Breve)" checked={milkValue === 'Half and Half (Breve)'} onChange={(e) => setMilkValue(e.target.value)} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Half and Half (Breve) </text>
             </label>
             <br />
@@ -660,167 +692,168 @@ const Product = () => {
         return (
           <form>
             <label>
-              <input type="radio" name="custom" value="StandardRecipeCustom" checked={customValue === 'StandardRecipeCustom'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Standard Recipe" checked={selectedOptions.includes('Standard Recipe')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Standard Recipe</text>
-            </label>
+              
+            </label> 
             <br />
             <label>
-              <input type="radio" name="custom" value="No Foam" checked={customValue === 'No Foam'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="No Foam" checked={selectedOptions.includes('No Foam')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>No Foam</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Add Foam" checked={customValue === 'Add Foam'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Add Foam" checked={selectedOptions.includes('Add Foam')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Add Foam</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="No Whip" checked={customValue === 'No Whip'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="No Whip" checked={selectedOptions.includes('No Whip')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>No Whip</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Add Whip" checked={customValue === 'Add Whip'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Add Whip" checked={selectedOptions.includes('Add Whip')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Add Whip</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="With Room" checked={customValue === 'With Room'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="With Room" checked={selectedOptions.includes('With Room')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>With Room</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="No Room" checked={customValue === 'No Room'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="No Room" checked={selectedOptions.includes('No Room')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>No Room</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Extra Ice" checked={customValue === 'Extra Ice'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Extra Ice" checked={selectedOptions.includes('Extra Ice')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Extra Ice</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Light Ice" checked={customValue === 'Light Ice'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Light Ice" checked={selectedOptions.includes('Light Ice')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Light Ice</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="No Ice" checked={customValue === 'No Ice'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="No Ice" checked={selectedOptions.includes('No Ice')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>No Ice</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Add Water" checked={customValue === 'Add Water'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Add Water" checked={selectedOptions.includes('Add Water')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Add Water</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="No Water" checked={customValue === 'No Water'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="No Water" checked={selectedOptions.includes('No Water')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>No Water</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Caramel Sauce on Top" checked={customValue === 'Caramel Sauce on Top'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Caramel Sauce on Top" checked={selectedOptions.includes('Caramel Sauce on Top')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Caramel Sauce on Top</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Caramel Sauce on Bottom" checked={customValue === 'Caramel Sauce on Bottom'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Caramel Sauce on Bottom" checked={selectedOptions.includes('Caramel Sauce on Bottom')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Caramel Sauce on Bottom</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="No Caramel Sauce" checked={customValue === 'No Caramel Sauce'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="No Caramel Sauce" checked={selectedOptions.includes('No Caramel Sauce')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>No Caramel Sauce</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Chocolate Sauce on Top" checked={customValue === 'Chocolate Sauce on Top'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Chocolate Sauce on Top" checked={selectedOptions.includes('Chocolate Sauce on Top')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Chocolate Sauce on Top</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Chocolate Sauce on Bottom" checked={customValue === 'Chocolate Sauce on Bottom'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Chocolate Sauce on Bottom" checked={selectedOptions.includes('Chocolate Sauce on Bottom')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Chocolate Sauce on Bottom</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="No Chocolate Sauce" checked={customValue === 'No Chocolate Sauce'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="No Chocolate Sauce" checked={selectedOptions.includes('No Chocolate Sauce')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>No Chocolate Sauce</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Add Nutmeg on Top" checked={customValue === 'Add Nutmeg on Top'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Add Nutmeg on Top" checked={selectedOptions.includes('Add Nutmeg on Top')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Add Nutmeg on Top</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Add Cinnamon on Top" checked={customValue === 'Add Cinnamon on Top'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Add Cinnamon on Top" checked={selectedOptions.includes('Add Cinnamon on Top')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Add Cinnamon on Top</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Add Sugar" checked={customValue === 'Add Sugar'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Add Sugar" checked={selectedOptions.includes('Add Sugar')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Add Sugar</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Add Splenda" checked={customValue === 'Add Splenda'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Add Splenda" checked={selectedOptions.includes('Add Splenda')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Add Splenda</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Add Equal" checked={customValue === 'Add Equal'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Add Equal" checked={selectedOptions.includes('Add Equal')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Add Equal</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Add Sweet and Low" checked={customValue === 'Add Sweet and Low'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Add Sweet and Low" checked={selectedOptions.includes('Add Sweet and Low')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Add Sweet and Low</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Add Sugar in the Raw" checked={customValue === 'Add Sugar in the Raw'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Add Sugar in the Raw" checked={selectedOptions.includes('Add Sugar in the Raw')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Add Sugar in the Raw</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Extra Hot" checked={customValue === 'Extra Hot'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Extra Hot" checked={selectedOptions.includes('Extra Hot')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Extra Hot</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Custom Temperature" checked={customValue === 'Custom Temperature'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Custom Temperature" checked={selectedOptions.includes('Custom Temperature')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Custom Temperature</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Double Blend" checked={customValue === 'Double Blend'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Double Blend" checked={selectedOptions.includes('Double Blend')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Double Blend</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Add Itaberco Energy" checked={customValue === 'Add Itaberco Energy'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Add Itaberco Energy" checked={selectedOptions.includes('Add Itaberco Energy')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Add Itaberco Energy</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Add Itaberco Matcha" checked={customValue === 'Add Itaberco Matcha'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Add Itaberco Matcha" checked={selectedOptions.includes('Add Itaberco Matcha')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Add Itaberco Matcha</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Add Itaberco Protein" checked={customValue === 'Add Itaberco Protein'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Add Itaberco Protein" checked={selectedOptions.includes('Add Itaberco Protein')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Add Itaberco Protein</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Add Honey" checked={customValue === 'Add Honey'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Add Honey" checked={selectedOptions.includes('Add Honey')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Add Honey</text>
             </label>
             <br />
             <label>
-              <input type="radio" name="custom" value="Add Agave Syrup" checked={customValue === 'Add Agave Syrup'} onChange={(e) => setCustomValue(e.target.value)} />
+              <input type="checkbox" name="custom" value="Add Agave Syrup" checked={selectedOptions.includes('Add Agave Syrup')} onChange={handleOptionChange} />
               <text style={{ fontSize: '20px', fontFamily: 'Helvetica Neue, sans-serif' }}>Add Agave Syrup</text>
             </label>
             <br />
@@ -831,7 +864,13 @@ const Product = () => {
         return null; // no form selected
     }
   };
-
+  console.log("Size Value: ", selectedOptionsArray);
+  console.log("Decaf Value: ",decafValue);
+  console.log("Shots Value: ", shotsValue);
+  console.log("Syrup Value: ", syrupValue);
+  console.log("Milk Value: ", milkValue);
+  console.log("Custom Values: ",selectedOptions);
+  
   const handleCloseClick = () => {
     setShowOverlay(false);
     document.body.style.overflow = 'auto';
@@ -896,9 +935,9 @@ const Product = () => {
             <div className="rightleft"></div>
             <labelClose className="close">close</labelClose>
           </CloseButton>
-          <selectionDiv style={{display: 'flex', flexFlow: 'column' , backgroundColor: 'white', height: '900px', width: '500px', margin: 'auto'}} >
+          <selectionDiv style={{display: 'flex', flexFlow: 'column' , backgroundColor: 'white', height: '800px', width: '550px', margin: 'auto'}} >
             <customOrderText style={{fontSize: '32px', fontFamily: 'Helvetica Neue, sans-serif', fontWeight: 'bold'}}>{customTypeText}</customOrderText>
-            <div  style={{marginTop: '100px'}}>
+            <div  style={{marginTop: '100px', height: '700px', overflow: 'auto'}}>
             {renderForm()}
             </div>
           </selectionDiv>
@@ -1192,6 +1231,7 @@ const Overlay = styled.div`
       border-radius: 10px;
       border: 2px solid black;
       height: 40px;
+      width: 480px;
       cursor: pointer;
     }
     form input[type="radio"] {
@@ -1214,6 +1254,33 @@ const Overlay = styled.div`
     form input[type="radio"]:checked::before {
       background-color: #00754a; 
     }
+
+    label input {
+      order: 2;
+      margin-left: 5px;
+    }
+    
+    form input[type="checkbox"] {
+      order: 2; /* this will move the checkbox input to the end of the flex container */
+    }
+    
+    form input[type="checkbox"]::before {
+      content: "";
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      margin-right: 10px;
+      margin-left: -5px;
+      margin-top: -5px;
+      border-radius: 50%;
+      border: 2.5px solid #00754a;
+      background-color: white;
+    }
+    
+    form input[type="checkbox"]:checked::before {
+      background-color: #00754a;
+    }
+    
 `;
 
 const CloseButton = styled.div`
