@@ -293,19 +293,23 @@ function AddtoRecipes(info) {
   handleSubmit()
 }
 
-function SalesReport(start, end){
-  return new Promise((resolve, reject) => {
-    async function fetchInventoryItems() {
+function GetSalesReport(start, end){
+  const [salesData, setSalesData] = useState([]);
+  //console.log(`${host}/salesHistoryRequest/${start}/${end}`);
+  useEffect(() => {
+    async function fetchSalesReport() {
       const response = await fetch(`http://localhost:3001/salesReport/${start}/${end}`);
       const data = await response.json();
-      resolve(data);
+      setSalesData(data);
+      // console.table(data);
     }
-    fetchInventoryItems().catch(reject);
-  });
+    fetchSalesReport();
+  }, [start, end]);
+  return salesData;
 }
 
 export {GetInventoryList, GetCurrentInventoryList, GetProductsList, GetCustomizationsList, GetSalesList, GetOrdersList, GetEmployeesList
   , GetCustomersList, GetRecipesList, GetSizesList, AddtoInventory, AddtoCustomers, AddtoEmployees, AddtoProducts,
-  AddtoRecipes, SalesReport
+  AddtoRecipes, GetSalesReport
 };
 
