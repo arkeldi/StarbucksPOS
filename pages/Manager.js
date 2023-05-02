@@ -2,17 +2,22 @@ import React, { useState , useEffect} from 'react';
 import styled from 'styled-components';
 import {GetInventoryList, GetCurrentInventoryList, GetProductsList, GetCustomizationsList, GetSalesList, GetOrdersList, GetEmployeesList
   , GetCustomersList, GetRecipesList, GetSizesList, AddtoInventory, AddtoCustomers, AddtoEmployees, AddtoProducts,
-   AddtoRecipes, SalesReport} from '../backend/server_functions';
+   AddtoRecipes, GetSalesReport} from '../backend/server_functions';
 
 const Manager = () => {
   const [activeTab, setActiveTab] = useState(0); // Define the active tab state
+  const [activeReport, setReport] = useState(0); // Define the active tab state
+  const [startDate, setStartDate] = useState('2020-01-01'); // Define the active tab state
+  const [endDate, setEndDate] = useState('2024-01-01'); // Define the active tab state
+
+  
   const [showInventoryForm, setShowInventoryForm] = useState(false);
   const [showProductsForm, setShowProductsForm] = useState(false);
   const [showEmployeesForm, setShowEmployeesForm] = useState(false);
   const [showCustomersForm, setShowCustomersForm] = useState(false);
   const [showRecipesForm, setShowRecipesForm] = useState(false);
   const [showReportForm, setShowReportForm] = useState(false);
-
+  
 
   const starting_inventory = GetInventoryList(0, 0)
   const productData = GetProductsList(0,0);
@@ -53,7 +58,7 @@ const Manager = () => {
   //     });
   // }, []);
 
-  let tabs = [
+  const tabs = [
     { id: 0, name: 'Inventory', tableData: starting_inventory},
     { id: 1, name: 'Transactions', tableData: []},
     { id: 2, name: 'Products', tableData: productData },
@@ -65,15 +70,16 @@ const Manager = () => {
     { id: 8, name: 'Recipes', tableData: recipeData },
     { id: 9, name: 'Sizes', tableData: sizeData },
     { id: 10, name: 'Reports', tableData: [
-      {id: 0, name: 'Sales Report', reportData: []}, 
-      {id: 1, name: 'X Report', reportData: []}, 
-      {id: 2, name: 'Z Report', reportData: []}, 
-      {id: 3, name: 'Excess Report', reportData: []}, 
-      {id: 4, name: 'Restock Report', reportData: []}, 
-      {id: 5, name: 'What Sells Together', reportData: []}, 
+      {id: 0, name: 'Sales Report', reportData: GetSalesReport(startDate, endDate)}, 
+      {id: 1, name: 'X Report', reportData: ['X report']}, 
+      {id: 2, name: 'Z Report', reportData: ['Z report']}, 
+      {id: 3, name: 'Excess Report', reportData: ['Excess']}, 
+      {id: 4, name: 'Restock Report', reportData: ['Restock']}, 
+      {id: 5, name: 'What Sells Together', reportData: ['What Sells together']}, 
     ] },
   ];
-
+  // console.log("SALES REPORT")
+  // console.log(GetSalesReport('2021-01-01', '2024-01-01'))
   function handleInventorySubmit(event) {
     event.preventDefault();
     if(showInventoryForm){
@@ -90,8 +96,11 @@ const Manager = () => {
       AddtoInventory(info)
       GetCurrentInventoryList(0, 0)
         .then(data => {
-          tabs[0].tableData = data;
-
+          // tabs[0].tableData = data;
+          let newTabs = [...tabs]
+          newTabs[0].tableData = data;
+          console.log(newTabs)
+          
         })
         .catch(error => {
           console.error(error);
@@ -111,7 +120,7 @@ const Manager = () => {
       const info = [productID, productName,productType, productPrice, productDescription, DateOfLastUpdate]
       console.log("product")
 
-      // console.log(info)
+      console.log(info)
       AddtoProducts(info)
     }
     setShowProductsForm(!showProductsForm);
@@ -165,25 +174,18 @@ const Manager = () => {
   }
   function handleReportSubmit(event) {
     event.preventDefault();
-    if(showReportForm){
       const start = event.target.elements.start.value;
       const end = event.target.elements.end.value;
       const info = [start, end]
-      console.log("report")
-      // console.log(info)
-      SalesReport(info)
-      .then(data => {
-        tabs[0].tableData = data;
-
-      })
-      .catch(error => {
-        console.error(error);
-      });
-    }
-    setShowReportForm(!showReportForm);
+      // console.log("report")
+      setStartDate(start)
+      setEndDate(end)
   }
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex); // Update the active tab state when a tab is clicked
+  };
+  const handleReportClick = (ReportIndex) => {
+    setReport(ReportIndex); // Update the active tab state when a tab is clicked
   };
   return (
       
@@ -224,27 +226,30 @@ const Manager = () => {
         <div>
           {tabs.map((tab) => (
             <div key={tab.id} style={{ display: activeTab === tab.id ? 'block' : 'none' }}>
-              <table>
-                <thead>
-                  <tr>
-                    {tab.tableData.length > 0 && Object.keys(tab.tableData[0]).map((key) => (
-                      <th key={key}>{key}</th>
+              {tab.id === 10 ? null:
+              
+                (<table>
+                  <thead>
+                    <tr>
+                      {tab.tableData.length > 0 && Object.keys(tab.tableData[0]).map((key) => (
+                        <th key={key}>{key}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tab.tableData.map((data) => (
+                        <tr key={data.id}>
+                            {Object.keys(data).map((key) => (
+                                <td key={key}>{data[key]}</td>
+                            ))}
+                        </tr>
+                        
                     ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {tab.tableData.map((data) => (
-                      <tr key={data.id}>
-                          {Object.keys(data).map((key) => (
-                              <td key={key}>{data[key]}</td>
-                          ))}
-                      </tr>
-                      
-                  ))}
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
+            )}
             </div>
-          ))}
+          ))} 
         </div>
       </div>
       <div
@@ -288,7 +293,7 @@ const Manager = () => {
         {activeTab === 2 ? <div>
             {showProductsForm ? (
               <div>
-                <form onSubmit="handleProductSubmit(); window.location.reload(); return false;">
+                <form onSubmit={handleProductSubmit}>
                 <label htmlFor="id">ID:</label>
                 <input type="text" id="id" name="id" />
 
@@ -397,9 +402,54 @@ const Manager = () => {
             </div>
           )}
           </div> : null}
-          {activeTab === 10 ? <div>
+          {activeTab === 10 ? 
+          
+          <div>
+            <div style = {{}}>
+                <div style={{ marginLeft: '300px',  display: 'flex' }}>
+              {tabs[10].tableData.map((tableData) => (
+                <div
+                  key={tableData.id}
+                  onClick={() => handleReportClick(tableData.id)}
+                  style={{
+                    backgroundColor: activeReport=== tableData.id ? '#1e3932' : '#00754a',
+                    color: 'white',
+                    padding: '10px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  {tableData.name}
+                </div>
+              ))}
+            </div>
+            <div style={{ marginLeft: '300px',  display: 'flex' }}>
+          {tabs[10].tableData.map((reportTab) => (
+            <div key={reportTab.id} style={{ display: activeReport === reportTab.id ? 'block' : 'none' }}>
+              <table>
+                <thead>
+                  <tr>
+                    {reportTab.reportData.length > 0 && Object.keys(reportTab.reportData[0]).map((key) => (
+                      <th key={key}>{key}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {reportTab.reportData.map((data) => (
+                      <tr key={data.id}>
+                          {Object.keys(data).map((key) => (
+                              <td key={key}>{data[key]}</td>
+                          ))}
+                      </tr>
+                      
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ))}
+        </div>
+            </div>
             <div>
-                <form onSubmit={handleRecipesSubmit}>
+                <form onSubmit={handleReportSubmit}>
                 <label htmlFor="start">Start</label>
                 <input type="text" id="start" name="start" />
 
