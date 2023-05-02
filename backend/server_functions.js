@@ -2,212 +2,310 @@ import { useState, useEffect } from 'react';
 
 
 /* Fetch menu items from list to display in table */
+function GetCurrentInventoryList(start, end){
+  return new Promise((resolve, reject) => {
+    async function fetchInventoryItems() {
+      const response = await fetch(`http://localhost:3001/queryInventory/${start}/${end}`);
+      const data = await response.json();
+      resolve(data);
+    }
+    fetchInventoryItems().catch(reject);
+  });
+}
 function GetInventoryList(start, end){
   const [inventoryItems, setInventoryItems] = useState([]);
-
   useEffect(() => {
-
       async function fetchInventoryItems() {
       // const response = await fetch(`http://localhost:3001/queryInventory/${start}/${end}`);
-      const response = await fetch(`http://localhost:3001/queryInventory/0/0`);
 
+      const response = await fetch(`http://localhost:3001/queryInventory/0/0`);
       const data = await response.json();
       setInventoryItems(data);
-      console.log("queried")
-
     }
-    console.log("useEffect")
     fetchInventoryItems();
   }, [start, end]);
-
   return inventoryItems;
 }
-
 function GetProductsList(start, end){
-  const [inventoryItems, setInventoryItems] = useState([]);
+  const [productsItems, setproducstItems] = useState([]);
 
   useEffect(() => {
 
-      async function fetchInventoryItems() {
+      async function fetchproductsItems() {
       // const response = await fetch(`http://localhost:3001/queryInventory/${start}/${end}`);
       const response = await fetch(`http://localhost:3001/queryProducts/0/0`);
 
       const data = await response.json();
-      setInventoryItems(data);
-      console.log("queried")
+      setproducstItems(data);
+      // console.log("queried")
 
     }
-    console.log("useEffect")
-    fetchInventoryItems();
+    // console.log("useEffect")
+    fetchproductsItems();
   }, [start, end]);
 
-  return inventoryItems;
+  return productsItems;
 }
 
 function GetCustomizationsList(start, end){
-  const [inventoryItems, setInventoryItems] = useState([]);
+  const [customizationsItems, setcustomizationsItems] = useState([]);
 
   useEffect(() => {
 
-      async function fetchInventoryItems() {
+      async function fetchcustomizationsItems() {
       // const response = await fetch(`http://localhost:3001/queryInventory/${start}/${end}`);
       const response = await fetch(`http://localhost:3001/queryCustomizations/0/0`);
 
       const data = await response.json();
-      setInventoryItems(data);
-      console.log("queried")
+      setcustomizationsItems(data);
+      // console.log("queried")
 
     }
-    console.log("useEffect")
-    fetchInventoryItems();
+    // console.log("useEffect")
+    fetchcustomizationsItems();
   }, [start, end]);
 
-  return inventoryItems;
+  return customizationsItems;
 }
 
 function GetSalesList(start, end){
-  const [inventoryItems, setInventoryItems] = useState([]);
+  const [salesItems, setsalesItems] = useState([]);
 
   useEffect(() => {
 
-      async function fetchInventoryItems() {
+      async function fetchsalesItems() {
       // const response = await fetch(`http://localhost:3001/queryInventory/${start}/${end}`);
       const response = await fetch(`http://localhost:3001/querySales/0/0`);
 
       const data = await response.json();
-      setInventoryItems(data);
-      console.log("queried")
+      setsalesItems(data);
+      // console.log("queried")
 
     }
-    console.log("useEffect")
-    fetchInventoryItems();
+    // console.log("useEffect")
+    fetchsalesItems();
   }, [start, end]);
 
-  return inventoryItems;
+  return salesItems;
 }
 function GetOrdersList(start, end){
-  const [inventoryItems, setInventoryItems] = useState([]);
+  const [ordersItems, setordersItems] = useState([]);
 
   useEffect(() => {
 
-      async function fetchInventoryItems() {
+      async function fetchordersItems() {
       // const response = await fetch(`http://localhost:3001/queryInventory/${start}/${end}`);
       const response = await fetch(`http://localhost:3001/queryOrders/0/0`);
 
       const data = await response.json();
-      setInventoryItems(data);
-      console.log("queried")
+      setordersItems(data);
+      // console.log("queried")
 
     }
-    console.log("useEffect")
-    fetchInventoryItems();
+    // console.log("useEffect")
+    fetchordersItems();
   }, [start, end]);
 
-  return inventoryItems;
+  return ordersItems;
 }
 function GetEmployeesList(start, end){
-  const [inventoryItems, setInventoryItems] = useState([]);
+  const [employeesItems, setemployeesItems] = useState([]);
 
   useEffect(() => {
 
-      async function fetchInventoryItems() {
+      async function fetchemployeesItems() {
       // const response = await fetch(`http://localhost:3001/queryInventory/${start}/${end}`);
       const response = await fetch(`http://localhost:3001/queryEmployees/0/0`);
 
       const data = await response.json();
-      setInventoryItems(data);
-      console.log("queried")
+      setemployeesItems(data);
+      // console.log("queried")
 
     }
-    console.log("useEffect")
-    fetchInventoryItems();
+    // console.log("useEffect")
+    fetchemployeesItems();
   }, [start, end]);
 
-  return inventoryItems;
+  return employeesItems;
 }
 
 function GetCustomersList(start, end){
-  const [inventoryItems, setInventoryItems] = useState([]);
+  const [customersItems, setcustomersItems] = useState([]);
 
   useEffect(() => {
 
-      async function fetchInventoryItems() {
+      async function fetchcustomersItems() {
       // const response = await fetch(`http://localhost:3001/queryInventory/${start}/${end}`);
       const response = await fetch(`http://localhost:3001/queryCustomers/0/0`);
 
       const data = await response.json();
-      setInventoryItems(data);
-      console.log("queried")
+      setcustomersItems(data);
+      // console.log("queried")
 
     }
-    console.log("useEffect")
-    fetchInventoryItems();
+    // console.log("useEffect")
+    fetchcustomersItems();
   }, [start, end]);
 
-  return inventoryItems;
+  return customersItems;
 }
 function GetRecipesList(start, end){
-  const [inventoryItems, setInventoryItems] = useState([]);
+  const [recipeItems, setrecipeItems] = useState([]);
 
   useEffect(() => {
 
-      async function fetchInventoryItems() {
+      async function fetchrecipeItems() {
       // const response = await fetch(`http://localhost:3001/queryInventory/${start}/${end}`);
       const response = await fetch(`http://localhost:3001/queryRecipes/0/0`);
 
       const data = await response.json();
-      setInventoryItems(data);
-      console.log("queried")
+      setrecipeItems(data);
+      // console.log("queried")
 
     }
-    console.log("useEffect")
-    fetchInventoryItems();
+    // console.log("useEffect")
+    fetchrecipeItems();
   }, [start, end]);
 
-  return inventoryItems;
+  return recipeItems;
 }
 function GetSizesList(start, end){
-  const [inventoryItems, setInventoryItems] = useState([]);
+  const [SizeItems, setSizeItems] = useState([]);
 
   useEffect(() => {
 
-      async function fetchInventoryItems() {
+      async function fetchSizeItems() {
       // const response = await fetch(`http://localhost:3001/queryInventory/${start}/${end}`);
       const response = await fetch(`http://localhost:3001/querySizes/0/0`);
 
       const data = await response.json();
-      setInventoryItems(data);
-      console.log("queried")
+      setSizeItems(data);
+      // console.log("queried")
 
     }
-    console.log("useEffect")
-    fetchInventoryItems();
+    // console.log("useEffect") 
+    fetchSizeItems();
   }, [start, end]);
 
-  return inventoryItems;
+  return SizeItems;
+}
+function AddtoInventory(info) {
+  // const [message, setMessage] = useState("");
+
+  async function handleSubmit() {
+    console.log(info[0])
+    const response = await fetch(`http://localhost:3001/add-item`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id : info[0],
+        name: info[1],
+        type: info[2],
+        quantity: info[3],
+        unit: info[4],
+        price: info[5],
+        date: info[6]
+      })
+    });
+    const data = await response.json();
+    console.log(data.message);
+  }
+  handleSubmit()
+}
+function AddtoProducts(info) {
+  async function handleSubmit() {
+    // console.log(info[0])
+    const response = await fetch(`http://localhost:3001/add-product`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id : info[0],
+        name: info[1],
+        type: info[2],
+        price: info[3],
+        description: info[4],
+        date: info[5]
+      })
+    });
+    const data = await response.json();
+    console.log(data.message);
+  }
+  handleSubmit()
+}
+function AddtoEmployees(info) {
+
+  async function handleSubmit() {
+    // console.log(info[0])
+    const response = await fetch(`http://localhost:3001/add-employees`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id : info[0],
+        name: info[1],
+        position: info[2],
+        phone: info[3],
+        date: info[4]
+      })
+    });
+    const data = await response.json();
+    console.log(data.message);
+  }
+  handleSubmit()
+}
+function AddtoCustomers(info) {
+  // const [message, setMessage] = useState("");
+
+  async function handleSubmit() {
+    console.log(info[0])
+    const response = await fetch(`http://localhost:3001/add-customers`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id : info[0],
+        name: info[1],
+        phone : info[2],
+        date: info[3]
+      })
+    });
+    const data = await response.json();
+    console.log(data.message);
+  }
+  handleSubmit()
+}
+function AddtoRecipes(info) {
+  async function handleSubmit() {
+    // console.log(info[0])
+    const response = await fetch(`http://localhost:3001/add-recipes`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        p_id : info[0],
+        i_id: info[1],
+        i_item: info[2],
+        quantity: info[3],
+        unit: info[4],
+        date: info[5]
+      })
+    });
+    const data = await response.json();
+    console.log(data.message);
+  }
+  handleSubmit()
 }
 
-// function AddtoInventory(info) {
-//   const [inventoryItems, setInventoryItems] = useState([]);
+function SalesReport(start, end){
+  return new Promise((resolve, reject) => {
+    async function fetchInventoryItems() {
+      const response = await fetch(`http://localhost:3001/salesReport/${start}/${end}`);
+      const data = await response.json();
+      resolve(data);
+    }
+    fetchInventoryItems().catch(reject);
+  });
+}
 
-//   useEffect(() => {
-
-//       async function fetchInventoryItems() {
-//       // const response = await fetch(`http://localhost:3001/queryInventory/${start}/${end}`);
-//       const response = await fetch(`http://localhost:3001/querySizes/0/0`);
-
-//       const data = await response.json();
-//       setInventoryItems(data);
-//       console.log("queried")
-
-//     }
-//     console.log("useEffect")
-//     fetchInventoryItems();
-//   }, [info]);
-
-//   return inventoryItems;
-// }
-
-export {GetInventoryList, GetProductsList, GetCustomizationsList, GetSalesList, GetOrdersList, GetEmployeesList
-  , GetCustomersList, GetRecipesList, GetSizesList
+export {GetInventoryList, GetCurrentInventoryList, GetProductsList, GetCustomizationsList, GetSalesList, GetOrdersList, GetEmployeesList
+  , GetCustomersList, GetRecipesList, GetSizesList, AddtoInventory, AddtoCustomers, AddtoEmployees, AddtoProducts,
+  AddtoRecipes, SalesReport
 };
+
