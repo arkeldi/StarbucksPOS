@@ -3,6 +3,7 @@ import NavLink from './NavLink';
 import styled from 'styled-components';
 import logo from '../images/logo.png';
 import GoogleTranslate from './googletranslate';
+import getWeatherByCityName from './weather';
 
 const Navbar = ({ className }) => {
 
@@ -13,7 +14,17 @@ const Navbar = ({ className }) => {
   return (
     <nav className={className}>
       <div style={{ display: 'flex', alignItems: 'center'}}>
-        <div>
+        <div id="weather-info" style={{ 
+                border: 'none', 
+                background: 'black',
+                color: 'white',
+                cursor: 'pointer', 
+                fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', 
+                fontWeight: 'bold', 
+                fontSize: '16px',
+                borderRadius: '50px',
+                padding: '10px 20px',
+              }}>
           <NavLink exact to="/">
             <button style={{ border: 'none', background: 'transparent', cursor: 'pointer' }}>
               <img src={logo} alt="Home" style={{ width: '55px', height: '55px', marginTop: '15px', marginLeft: '20px'}} />
