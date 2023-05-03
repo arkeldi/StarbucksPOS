@@ -319,8 +319,8 @@ app.post('/add-recipes', async (req, res) => {
 app.post('/add-sales', async (req, res) => {
   try{
     const itemInfo = req.body; // assuming the JSON payload contains all necessary item info
-    const queryToUse =  `INSERT INTO sales (date, time, employee_id, customer_id, total) VALUES ('${itemInfo.id}', '${itemInfo.date}', '${itemInfo.time}', '${itemInfo.employeeid}', '${itemInfo.customerid}', '${itemInfo.total}');`
-    console.log(queryToUse);
+    const queryToUse =  `INSERT INTO sales (date, time, employee_id, customer_id, total) VALUES ('${itemInfo.date}', '${itemInfo.time}', '${itemInfo.employeeid}', '${itemInfo.customerid}', '${itemInfo.total}');`
+    console.log(queryToUse)
     const result = await pool.query(queryToUse);
     res.json({ message: 'Item added successfully' }); // send a response back to the client
   }
