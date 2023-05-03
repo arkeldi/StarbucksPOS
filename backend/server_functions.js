@@ -293,23 +293,42 @@ function AddtoRecipes(info) {
   handleSubmit()
 }
 
-function GetSalesReport(start, end){
-  const [salesData, setSalesData] = useState([]);
-  //console.log(`${host}/salesHistoryRequest/${start}/${end}`);
-  useEffect(() => {
-    async function fetchSalesReport() {
+function AddtoSales(info) {
+  // const [message, setMessage] = useState("");
+
+  async function handleSubmit() {
+    console.log(info[0])
+    const response = await fetch(`http://localhost:3001/add-sales`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id : info[0],
+        date: info[1],
+        time : info[2],
+        employeeid : info[3],
+        customerid : info[4], 
+        total : info[5]
+      })
+    });
+    const data = await response.json();
+    console.log(data.message);
+  }
+  handleSubmit()
+}
+
+function SalesReport(start, end){
+  return new Promise((resolve, reject) => {
+    async function fetchInventoryItems() {
       const response = await fetch(`http://localhost:3001/salesReport/${start}/${end}`);
       const data = await response.json();
-      setSalesData(data);
-      // console.table(data);
+      resolve(data);
     }
-    fetchSalesReport();
-  }, [start, end]);
-  return salesData;
+    fetchInventoryItems().catch(reject);
+  });
 }
 
 export {GetInventoryList, GetCurrentInventoryList, GetProductsList, GetCustomizationsList, GetSalesList, GetOrdersList, GetEmployeesList
   , GetCustomersList, GetRecipesList, GetSizesList, AddtoInventory, AddtoCustomers, AddtoEmployees, AddtoProducts,
-  AddtoRecipes, GetSalesReport
+  AddtoRecipes, SalesReport, AddtoSales
 };
 

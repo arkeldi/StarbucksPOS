@@ -37,7 +37,6 @@ app.get('/queryInventory/:start/:end', async (req, res) => {
         queryToUse = 'SELECT * FROM inventory WHERE id >= ' + start + ' AND id <= ' + end + ' ORDER BY id';
       }
       console.log(queryToUse);
-
       const { rows } = await pool.query(queryToUse);
       res.json(rows);
       //console.log(rows);
@@ -54,7 +53,7 @@ app.get('/queryProducts/:start/:end', async (req, res) => {
     var queryToUse;
     if((start === 0) && (end === 0)){
       queryToUse = 'SELECT * FROM products ORDER BY id limit 10';
-    } 
+    }
     else{
       queryToUse = 'SELECT * FROM products WHERE id >= ' + start + ' AND id <= ' + end + ' ORDER BY id';
     }
@@ -316,22 +315,38 @@ app.post('/add-recipes', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+app.post('/add-sales', async (req, res) => {
+  try{
+    const itemInfo = req.body; // assuming the JSON payload contains all necessary item info
+    const queryToUse =  `INSERT INTO sales (date, time, employee_id, customer_id, total) VALUES ('${itemInfo.id}', '${itemInfo.date}', '${itemInfo.time}', '${itemInfo.employeeid}', '${itemInfo.customerid}', '${itemInfo.total}');`
+    console.log(queryToUse);
+    const result = await pool.query(queryToUse);
+    res.json({ message: 'Item added successfully' }); // send a response back to the client
+  }
+  catch(err){
+    console.error('Error adding item to database:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 app.get('/salesReport/:start/:end', async (req, res) => {
   try {
-    const start = req.params.start;
-    const end = req.params.end;
-    const queryToUse = "SELECT p.product_name, COUNT(*) AS total_sales "+
-         "FROM orders o "+
-         "JOIN sales s ON o.sale_id = s.id " +
-         "JOIN products p ON o.product_id = p.id " +
-         "WHERE s.date BETWEEN '"+start+"' AND '"+end+"' " + 
-         "GROUP BY p.product_name "+
-         "ORDER BY total_sales DESC;";
-    // console.log(queryToUse);
+    const start = parseInt(req.params.start);
+    const end = parseInt(req.params.end);
+    var queryToUse;
+    if((start === 0) && (end === 0)){
+      queryToUse = 'SELECT * FROM inventory ORDER BY id limit 10';
+    }
+    else{
+      queryToUse = 'SELECT * FROM inventory WHERE id >= ' + start + ' AND id <= ' + end + ' ORDER BY id';
+    }
+    console.log(queryToUse);
     const { rows } = await pool.query(queryToUse);
     res.json(rows);
+    //console.log(rows);
   } catch (err) {
-    console.error("Read query in sales failed " + err);
+
+    console.error("Read query in inventory failed " +err);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
