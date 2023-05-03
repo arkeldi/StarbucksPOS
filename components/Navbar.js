@@ -2,6 +2,8 @@ import React from 'react';
 import NavLink from './NavLink';
 import styled from 'styled-components';
 import logo from '../images/logo.png';
+import GoogleTranslate from './googletranslate';
+
 const Navbar = ({ className }) => {
 
   const handleLogin = () => {
@@ -43,8 +45,10 @@ const Navbar = ({ className }) => {
             </button>
           </div>
         </div>
+        <GoogleTranslate />
       </div>
     </nav>
+     
   );
 };
 
