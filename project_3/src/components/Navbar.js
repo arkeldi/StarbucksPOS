@@ -23,7 +23,9 @@ const Navbar = ({ className }) => {
             <li>
               <NavLink to="/" style={{ fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '16px', marginLeft: '20px' }}>HOME</NavLink>
               <NavLink to="/menu" style={{ fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '16px', marginLeft: '20px' }}>MENU</NavLink>
-
+              <NavLink to="/menuemployee" style={{ fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '16px', marginLeft: '20px' }}>EMPLOYEE</NavLink>
+              <NavLink to="/manager" style={{ fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '16px', marginLeft: '20px' }}>MANAGER</NavLink>
+              <NavLink to="/menuscreen" style={{ fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '16px', marginLeft: '20px' }}>MENU SCREEN</NavLink>
             </li>
           </ul>
           <div style={{ marginRight: '50px' }}>

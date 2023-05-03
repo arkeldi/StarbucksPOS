@@ -11,6 +11,119 @@ const BottomButton = () => {
   );
 };
 
+const handleClick = () => {
+  
+  const popupWidth = 600;
+  const popupHeight = 500;
+  const left = (window.innerWidth - popupWidth) / 2;
+  const top = (window.innerHeight - popupHeight) / 2;
+  const popupFeatures = `width=${popupWidth},height=${popupHeight},left=${left},top=${top},resizable=yes,scrollbars=yes`;
+  const popupContent = `
+    <div style="text-align: center">
+      <p>Our story begins in 1971 along the cobblestone streets of Seattle’s historic Pike Place Market. It was here where Starbucks opened its first store, offering fresh-roasted coffee beans, tea and spices from around the world for our customers to take home. Our name was inspired by the classic tale, “Moby-Dick,” evoking the seafaring tradition of the early coffee traders.</p>
+      <p>Ten years later, a young New Yorker named Howard Schultz would walk through these doors and become captivated with Starbucks coffee from his first sip. After joining the company in 1982, a different cobblestone road would lead him to another discovery. It was on a trip to Milan in 1983 that Howard first experienced Italy’s coffeehouses, and he returned to Seattle inspired to bring the warmth and artistry of its coffee culture to Starbucks. By 1987, we swapped our brown aprons for green ones and embarked on our next chapter as a coffeehouse.</p>
+      <p>Starbucks would soon expand to Chicago and Vancouver, Canada and then on to California, Washington, D.C. and New York. By 1996, we would cross the Pacific to open our first store in Japan, followed by Europe in 1998 and China in 1999. Over the next two decades, we would grow to welcome millions of customers each week and become a part of the fabric of tens of thousands of neighborhoods all around the world. In everything we do, we are always dedicated to Our Mission: With every cup, with every conversation, with every community - we nurture the limitless possibilities of human connection.</p>
+    </div>
+  `;
+  const popup = window.open('', '', popupFeatures);
+  popup.document.title = 'Our Company';
+  popup.document.write(popupContent);
+};
+
+const handleClickCoffee = () => {
+  
+  const popupWidth = 600;
+  const popupHeight = 500;
+  const left = (window.innerWidth - popupWidth) / 2;
+  const top = (window.innerHeight - popupHeight) / 2;
+  const popupFeatures = `width=${popupWidth},height=${popupHeight},left=${left},top=${top},resizable=yes,scrollbars=yes`;
+  const popupContent = `
+    <div style="text-align: center">
+    <p> Let's talk coffee </p>
+    <p> Whether you're searching for something new to warm your mug, seeking the best brew method for your favorite blend or exploring our rarest offerings, you’ve come to the right place. </p>
+    </div>
+  `;
+  const popup = window.open('', '', popupFeatures);
+  popup.document.title = 'Our Company';
+  popup.document.write(popupContent);
+};
+
+const handleClickContact = () => {
+  
+  const popupWidth = 600;
+  const popupHeight = 500;
+  const left = (window.innerWidth - popupWidth) / 2;
+  const top = (window.innerHeight - popupHeight) / 2;
+  const popupFeatures = `width=${popupWidth},height=${popupHeight},left=${left},top=${top},resizable=yes,scrollbars=yes`;
+  const popupContent = `
+    <div style="text-align: center">
+      <p> - Jack Letsinger - jackletsinger@tamu.edu </p>
+      <p> - Nick Anaya - naam1595@tamu.edu </p>
+      <p> - Cade Hanath-Culp - cade22@tamu.edu </p>
+      <p> - Arkeldi Bylyku - arkeldi@tamu.edu </p>
+      <p> - Ethan Chen - chenners@tamu.edu </p>
+    </div>
+  `;
+  const popup = window.open('', '', popupFeatures);
+  popup.document.title = 'Our Company';
+  popup.document.write(popupContent);
+};
+
+const handleClickPN = () => {
+  
+  const popupWidth = 600;
+  const popupHeight = 500;
+  const left = (window.innerWidth - popupWidth) / 2;
+  const top = (window.innerHeight - popupHeight) / 2;
+  const popupFeatures = `width=${popupWidth},height=${popupHeight},left=${left},top=${top},resizable=yes,scrollbars=yes`;
+  const popupContent = `
+    <div style="text-align: center">
+      <p> As part of our effort to protect your privacy and to comply with 
+      applicable privacy and data protection laws, we strive to consider all of our data 
+      governance practices through the lens of the recognized principles of data minimization, 
+      limited collection, and limited use, among other key areas addressed below. 
+      We do so to respect and maintain your trust. 
+      In other words, we believe that taking care of you includes taking care of your data and privacy. </p>
+    </div>
+  `;
+  const popup = window.open('', '', popupFeatures);
+  popup.document.title = 'Our Company';
+  popup.document.write(popupContent);
+};
+
+const handleClickTerms = () => {
+  
+  const popupWidth = 600;
+  const popupHeight = 500;
+  const left = (window.innerWidth - popupWidth) / 2;
+  const top = (window.innerHeight - popupHeight) / 2;
+  const popupFeatures = `width=${popupWidth},height=${popupHeight},left=${left},top=${top},resizable=yes,scrollbars=yes`;
+  const popupContent = `
+    <div style="text-align: center">
+      <p> PLEASE READ THESE TERMS OF USE CAREFULLY. ACCESSING OR USING THIS WEBSITE, 
+      CONSTITUTES ACCEPTANCE OF THESE TERMS OF USE (“TERMS”), 
+      AS SUCH MAY BE REVISED BY STARBUCKS FROM TIME TO TIME, 
+      AND IS A BINDING AGREEMENT BETWEEN THE USER (“USER”) 
+      AND STARBUCKS CORPORATION (D/B/A STARBUCKS COFFEE COMPANY) 
+      GOVERNING THE USE OF THE WEBSITE. IF USER DOES NOT AGREE TO THESE TERMS, 
+      USER SHOULD NOT ACCESS OR USE THIS WEBSITE. THESE TERMS CONTAIN DISCLAIMERS 
+      AND OTHER PROVISIONS THAT LIMIT OUR LIABILITY TO USER. </p>
+      <p> These Terms apply to your access to, and use of, all or part of any website or mobile application of 
+      Starbucks Corporation or its subsidiaries and affiliated companies (collectively, “Starbucks”), 
+      including www.starbucks.com, www.ideas.starbucks.com, www.starbucksreserve.com, www.starbuckscoffeegear.com, 
+      www.stories.starbucks.com and any other site, mobile application or online service where these Terms are posted 
+      (collectively, the “Sites”). These Terms do not alter in any way the terms or conditions of any other 
+      agreement you may have with Starbucks for products, services or otherwise. <p>
+      <p> In the event there is any conflict or inconsistency between these Terms and any other terms of use that appear on the Sites, these Terms will govern. 
+      However, if you navigate away from the Sites to a third-party site, you may be subject to alternative terms and 
+      conditions of use, as may be specified on such site, which will govern your use of that site. </p>
+    </div>
+  `;
+  const popup = window.open('', '', popupFeatures);
+  popup.document.title = 'Our Company';
+  popup.document.write(popupContent);
+};
+
 const HomePage = props => {
   
   return (
@@ -40,7 +153,8 @@ const HomePage = props => {
           }}
           onMouseOut={(e) => {
             e.target.style.background = '#a0c292';
-          }}
+          }} 
+          onClick={() => window.location.href = "/menu"}
           >
           Order now 
         </button >
@@ -75,6 +189,7 @@ const HomePage = props => {
           onMouseOut={(e) => {
             e.target.style.background = '#d4e9e2';
           }}
+          onClick={() => window.location.href = "/menu"}
           >
           Order now 
         </button >
@@ -105,6 +220,7 @@ const HomePage = props => {
           onMouseOut={(e) => {
             e.target.style.background = '#f6bed9';
           }}
+          onClick={() => window.location.href = "/menu"}
           >
           Order now 
         </button >
@@ -139,6 +255,7 @@ const HomePage = props => {
           onMouseOut={(e) => {
             e.target.style.background = '#fff4d4';
           }}
+          onClick={() => window.location.href = "/product/76"}
           >
           Order now 
         </button >
@@ -200,9 +317,9 @@ const HomePage = props => {
                 border: 'none', 
                 background: 'white'}}> 
                   <a style={{ fontWeight: 'bold', fontSize: '28px', marginBottom: '25px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif' }}>About Us</a>
-                  <a style={{ cursor: 'pointer', fontSize: '20px', marginBottom: '20px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif'}} onClick={() => alert('Our Company pop-up window')}>Our Company</a>
-                  <a style={{ cursor: 'pointer', fontSize: '20px', marginBottom: '20px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif' }} onClick={() => alert('Our Coffee pop-up window')}>Our Coffee</a>
-                  <a style={{ cursor: 'pointer', fontSize: '20px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif' }} onClick={() => alert('Contact pop-up window')}>Contact</a>
+                  <a style={{ cursor: 'pointer', fontSize: '20px', marginBottom: '20px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif'}} onClick={handleClick}>Our Company</a>
+                  <a style={{ cursor: 'pointer', fontSize: '20px', marginBottom: '20px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif' }} onClick={handleClickCoffee}>Our Coffee</a>
+                  <a style={{ cursor: 'pointer', fontSize: '20px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif' }} onClick={handleClickContact}>Contact</a>
                 </div>
               <div style={{
                 display: 'flex',
@@ -236,9 +353,9 @@ const HomePage = props => {
 
                 }}>
                   <div style={{marginBottom: '25px'}} >
-                    <a style={{marginRight: '15px', textDecoration: 'none', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif'}} href="#">Privacy Notice</a>
+                    <a style={{cursor: 'pointer', marginRight: '15px', textDecoration: 'none', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif'}} onClick={handleClickPN}>Privacy Notice</a> 
                     <text> | </text>
-                    <a style={{marginLeft: '15px', textDecoration: 'none', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif'}} href="#">Terms of Use</a>
+                    <a style={{cursor: 'pointer', marginLeft: '15px', textDecoration: 'none', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif'}} onClick={handleClickTerms}>Terms of Use</a>
                   </div>
                   <div>
                     <text style = {{fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif'}}>© 2023 Starbucks Coffee Company. All rights reserved.</text>
@@ -261,8 +378,9 @@ const HomePage = props => {
             padding: '10px 20px',
             marginRight: '400px',
           }}
-          onClick={() => window.location.href = "/product"}
+          onClick={() => window.location.href = "/menu"}
           >
+
           Order Now
         </button>
         <BottomButton />

@@ -65,7 +65,7 @@ function Order() {
             <div style= {{backgroundColor: '#1e3932', width: '40%'}}>
                 <div style= {{width: '50%', height: '100px', marginLeft: '50px', marginTop: '40px', display: 'flex', alignItems: 'center'}}>
                     <img src={require('../images/logo.png')} style={{ width: '80px', height: '80px', marginRight: '10px' }} />
-                    <a href="/menu" style={{ color: 'white', textDecoration: 'none', marginLeft: '20px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '20px'}}> &lt;  Back to menu</a>
+                    <a href="/menuemployee" style={{ color: 'white', textDecoration: 'none', marginLeft: '20px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '20px'}}> &lt;  Back to menu</a>
                 </div>
                 <div style= {{display: 'flex', flexFlow:'column', alignItems: 'center', marginTop: '100px'}}>
                     <img src={require('../images/OrderGif.gif')} style={{ width: '350px', height: '350px', marginRight: '10px', borderRadius: '20%' }} />

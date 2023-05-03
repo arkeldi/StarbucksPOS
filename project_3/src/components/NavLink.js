@@ -13,11 +13,6 @@ export default styled(StyledNavLink)`
 
   transition: 200ms;
 
-  &.active {
-    color: #00754a;
-    border-bottom: solid 3px #00754a;
-  }
-
   &:hover {
     color: #888;
   }

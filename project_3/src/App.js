@@ -13,21 +13,29 @@ import Table from './pages/Table';
 import Menu from './pages/Menu';
 import Product from './pages/Product';
 import Order from './pages/Order';
+import MenuEmployee from './pages/MenuEmployee';
+import ProductEmployee from './pages/ProductEmployee';
+import OrderEmployee from './pages/OrderEmployee';
+import MenuScreen from './pages/MenuScreen';
 
 const App = ({ className }) => (
   <div className={className}>
     <Navbar />
-    <Routes>
-    <Route exact path='/' element={<HomePage />} />
-    <Route path='/AboutPage' element={<AboutPage />} />
-    <Route path='/login' element={<Login/>} />
-    <Route path='/createaccount' element={<CreateAccount/>} />
-    <Route path='/manager' element={<Manager />} />
-    <Route path="/product/:id" element={<Product Prop={2} />} />
-    <Route path='/table' element={<Table />} />
-    <Route exact path="/menu" element={<Menu />} />
-    <Route path="/order" element={<Order />} />
-    <Route element={PageNotFound} />
+      <Routes>
+      <Route exact path='/' element={<HomePage />} />
+      <Route path='/AboutPage' element={<AboutPage />} />
+      <Route path='/login' element={<Login/>} />
+      <Route path='/createaccount' element={<CreateAccount/>} />
+      <Route path='/manager' element={<Manager />} />
+      <Route path="/product/:id" element={<Product/>} />
+      <Route path='/table' element={<Table />} />
+      <Route path="/menu" element={<Menu />} />
+      <Route path="/order" element={<Order />} />
+      <Route path="/menuemployee" element={<MenuEmployee />} />
+      <Route path="/productemployee/:id" element={<ProductEmployee />} />
+      <Route path="/orderem" element={<OrderEmployee />} />
+      <Route path="/menuscreen" element={<MenuScreen/>} />
+      <Route element={PageNotFound} />
     </Routes>
   </div>
   
