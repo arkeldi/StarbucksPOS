@@ -1,11 +1,6 @@
-/**
- * @fileoverview This is a simple React component for creating a Starbucks account. Code: Arkeldi 
- */
-
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-// Styled container for the whole component
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -13,14 +8,12 @@ const Container = styled.div`
   margin-top: 50px; 
 `;
 
-// Styled title for the component
 const Title = styled.h1`
   font-size: 24px;
   text-align: center;
   margin-bottom: 20px;
 `;
 
-// Styled form container
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -31,13 +24,11 @@ const Form = styled.form`
   box-shadow: 0px 0px 10px #888;
 `;
 
-// Styled label for input fields
 const Label = styled.label`
   margin-bottom: 5px;
   font-weight: bold;
 `;
 
-// Styled input fields
 const Input = styled.input`
   padding: 10px;
   margin: 10px;
@@ -46,7 +37,6 @@ const Input = styled.input`
   box-shadow: 0px 0px 5px #ddd;
 `;
 
-// Styled submit button
 const SubmitButton = styled.button`
   padding: 10px;
   margin: 10px;
@@ -55,32 +45,20 @@ const SubmitButton = styled.button`
   background-color: #00704A;
   color: #fff;
   cursor: pointer;  
+
   &:hover {
     background-color: #005738;
   }
 `;
-
-// Styled error text
 const ErrorText = styled.p`
   color: red;
 `;
-
-
-/**
- * CreateAccount component represents the UI for creating a Starbucks account.
- * returns {JSX.Element} The rendered CreateAccount component.
- */
 
 const CreateAccount = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-   /**
-   * Handles form submission.
-   * param {Event} e - The form submit event.
-   */
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -141,5 +119,5 @@ const CreateAccount = () => {
     </Container>
   );
 };
-// Export the CreateAccount component as the default export
+
 export default CreateAccount;
