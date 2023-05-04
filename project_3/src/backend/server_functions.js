@@ -316,6 +316,17 @@ function AddtoSales(info) {
   handleSubmit()
 }
 
+function SalesReport(start, end){
+  return new Promise((resolve, reject) => {
+    async function fetchInventoryItems() {
+      const response = await fetch(`http://localhost:3001//manager/salesReport/${start}/${end}`);
+      const data = await response.json();
+      resolve(data);
+    }
+    fetchInventoryItems().catch(reject);
+  });
+}
+
 function UpdateInventory(info) {
   // const [message, setMessage] = useState("");
 
@@ -333,19 +344,8 @@ function UpdateInventory(info) {
   handleSubmit()
 }
 
-function SalesReport(start, end){
-  return new Promise((resolve, reject) => {
-    async function fetchInventoryItems() {
-      const response = await fetch(`http://localhost:3001/salesReport/${start}/${end}`);
-      const data = await response.json();
-      resolve(data);
-    }
-    fetchInventoryItems().catch(reject);
-  });
-}
 
 export {GetInventoryList, GetCurrentInventoryList, GetProductsList, GetCustomizationsList, GetSalesList, GetOrdersList, GetEmployeesList
   , GetCustomersList, GetRecipesList, GetSizesList, AddtoInventory, AddtoCustomers, AddtoEmployees, AddtoProducts,
   AddtoRecipes, SalesReport, AddtoSales, UpdateInventory
 };
-
