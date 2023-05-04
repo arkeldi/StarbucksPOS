@@ -5,6 +5,7 @@ import styled from 'styled-components'
 const StyledNavLink = props => <NavLink {...props} />
 
 export default styled(StyledNavLink)`
+  
   color: black;
   margin: 5px 8px;
   text-decoration: none;
@@ -13,8 +14,8 @@ export default styled(StyledNavLink)`
   transition: 200ms;
 
   &.active {
-    color: red;
-    border-bottom: solid 3px red;
+    color: #00754a;
+    border-bottom: solid 3px #00754a;
   }
 
   &:hover {
