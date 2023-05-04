@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-
+import FontResizer from '../components/FontResizer';
 const BottomButton = () => {
   
   return (
@@ -132,6 +132,16 @@ let combinedValues = '';
 
 const Product = () => {
 
+  const [fontSize, setFontSize] = useState(16);
+
+  const resizeFont = (increment) => {
+    setFontSize(fontSize + increment);
+
+  };
+  
+  const fontStyles = {
+    fontSize: `${fontSize}px`,
+  };
   const navigate = useNavigate();
   const { id } = useParams();
   
@@ -1092,6 +1102,7 @@ const Product = () => {
   return (
     
     <>
+    
       <div style={{marginTop: '20px'}}>
         <text style={{marginLeft: '125px', fontFamily: 'Helvetica Neue, sans-serif', fontSize: '15px'}}>Menu / {menuText}</text>
       </div>
@@ -1251,6 +1262,10 @@ const Product = () => {
         </div>
       </EndDiv>
       <BottomDiv>
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
+          <button onClick={() => resizeFont(1)}>Increase font size</button>
+          <button onClick={() => resizeFont(-1)}>Decrease font size</button>
+      </div>
         <button 
           style={{ 
             border: 'none', 

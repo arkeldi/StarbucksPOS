@@ -1,13 +1,18 @@
-import React from 'react'
+//import React from 'react'
 import styled from 'styled-components'
-
+import { Link } from 'react-router-dom';
+//new line import here
+import React, { useState } from 'react';
+import FontResizer from '../components/FontResizer';
+//new line import here
 import Title from '../components/Title'
 
 const BottomButton = () => {
   return (
-    <Button >
+    <Link to="/order" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent', color: 'black', border: 'none', borderRadius: '10px', cursor: 'pointer', marginRight: '250px' }}>
       <ButtonImg src={require('../images/bag.jpg')} />
-    </Button>
+      
+    </Link>
   );
 };
 
@@ -126,14 +131,28 @@ const handleClickTerms = () => {
 
 const HomePage = props => {
   
+  const [fontSize, setFontSize] = useState(16);
+
+  const resizeFont = (increment) => {
+    setFontSize(fontSize + increment);
+
+  };
+  
+  const fontStyles = {
+    fontSize: `${fontSize}px`,
+  };
+
+  
   return (
     <>
     <ContentDiv>
+    
       <div style={{display: 'flex', width: '1290px', height: '500px', backgroundColor: '#a0c292', margin: '30px auto'}}>
         
         <div style={{display: 'flex', flexFlow: 'column', width: '1000px', justifyContent: 'center', alignItems: 'center'}} >
-          <text style={{display: 'flex', color: '#1e3e39', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '36px', textIndent: '40px'}}> Cups of <br />Appreciation </text>
-          <text style={{fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', color: '#1f3e39', marginTop: '30px', fontSize: '20px'}}> Share the love. Express your thanks with a well-deserved coffee.</text>
+        <text style={{display: 'flex', color: '#1e3e39', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: `${fontSize}px`, textIndent: '40px'}}>Cups of <br />Appreciation</text>
+        <text style={{fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', color: '#1f3e39', marginTop: '30px', fontSize: `${fontSize}px`}}>Share the love. Express your thanks with a well-deserved coffee.</text>
+
           <button style={{
             marginTop: '30px',
             borderColor: 'black',
@@ -147,6 +166,7 @@ const HomePage = props => {
             borderWidth: '1px',
             padding: '10px 20px',
             transition: 'background-color 0.2s ease-in-out',
+            fontSize: `${fontSize}px`
           }}
           onMouseOver={(e) => {
             e.target.style.background = '#8ba680';
@@ -166,8 +186,8 @@ const HomePage = props => {
         <img src={require('../images/mobileOrder.png')} style={{ width: '600px', height: '220px'}}/>
 
         <div style={{display: 'flex', flexFlow: 'column', width: '1000px', justifyContent: 'center', alignItems: 'center'}} >
-          <text style={{display: 'flex', color: 'black', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '22px'}}> Spring in your step, Coffee in your Cup </text>
-          <text style={{fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', color: 'black', marginTop: '30px', fontSize: '16px'}}> Shake up your usual and order your favorite drink now!. </text>
+          <text style={{display: 'flex', color: 'black', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: `${fontSize}px`}}> Spring in your step, Coffee in your Cup </text>
+          <text style={{fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', color: 'black', marginTop: '30px', fontSize: `${fontSize}px`}}> Shake up your usual and order your favorite drink now!. </text>
           <button style={{
             marginTop: '30px',
             borderColor: 'black',
@@ -182,6 +202,7 @@ const HomePage = props => {
             borderColor: 'black',
             padding: '10px 20px',
             transition: 'background-color 0.2s ease-in-out',
+            fontSize: `${fontSize}px`
           }}
           onMouseOver={(e) => {
             e.target.style.background = '#b3c1bc';
@@ -198,8 +219,8 @@ const HomePage = props => {
       <div style={{display: 'flex', width: '1290px', height: '500px', backgroundColor: '#f6bed9', margin: '30px auto'}}>
         
         <div style={{display: 'flex', flexFlow: 'column', width: '1000px', justifyContent: 'center', alignItems: 'center'}} >
-          <text style={{display: 'flex', color: '#1e3e39', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '36px'}}> Hot & Cold. Your way</text>
-          <text style={{fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', color: '#1f3e39', marginTop: '30px', fontSize: '20px'}}> Coffee made with love for all the seasons.</text>
+          <text style={{display: 'flex', color: '#1e3e39', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: `${fontSize}px`}}> Hot & Cold. Your way</text>
+          <text style={{fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', color: '#1f3e39', marginTop: '30px', fontSize: `${fontSize}px`}}> Coffee made with love for all the seasons.</text>
           <button style={{
             marginTop: '30px',
             borderColor: 'black',
@@ -213,6 +234,7 @@ const HomePage = props => {
             borderWidth: '1px',
             padding: '10px 20px',
             transition: 'background-color 0.2s ease-in-out',
+            fontSize: `${fontSize}px`
           }}
           onMouseOver={(e) => {
             e.target.style.background = '#c595ac';
@@ -232,8 +254,8 @@ const HomePage = props => {
         <img src={require('../images/butter.jpg')} style={{ width: '600px', height: '500px'}}/>
 
         <div style={{display: 'flex', flexFlow: 'column', width: '1000px', justifyContent: 'center', alignItems: 'center'}} >
-          <text style={{display: 'flex', color: '#1e3932', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '36px'}}> Just-right choice </text>
-          <text style={{fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', color: '#1e3932', marginTop: '30px', fontSize: '16px'}}> You can't go wrong with a classic!</text>
+          <text style={{display: 'flex', color: '#1e3932', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: `${fontSize}px`}}> Just-right choice </text>
+          <text style={{fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', color: '#1e3932', marginTop: '30px', fontSize: `${fontSize}px`}}> You can't go wrong with a classic!</text>
           <button style={{
             marginTop: '30px',
             borderColor: 'black',
@@ -248,6 +270,7 @@ const HomePage = props => {
             borderColor: 'black',
             padding: '10px 20px',
             transition: 'background-color 0.2s ease-in-out',
+            fontSize: `${fontSize}px`
           }}
           onMouseOver={(e) => {
             e.target.style.background = '#dcd3b8';
@@ -264,8 +287,8 @@ const HomePage = props => {
 
       <div style={{display: 'flex', width: '1290px', height: '350px', backgroundColor: '#1e3932', margin: '30px auto'}}>
         <div style={{display: 'flex', flexFlow: 'column', width: '1000px', justifyContent: 'center', alignItems: 'center'}} >
-          <text style={{display: 'flex', color: 'white', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '36px'}}> Delivery delight </text>
-          <text style={{fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', color: 'white', marginTop: '30px', fontSize: '20px'}}> Brighten your day by getting your favorite order on Uber Eats.</text>
+          <text style={{display: 'flex', color: 'white', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: `${fontSize}px`}}> Delivery delight </text>
+          <text style={{fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', color: 'white', marginTop: '30px', fontSize: `${fontSize}px`}}> Brighten your day by getting your favorite order on Uber Eats.</text>
           <button style={{
             marginTop: '30px',
             borderColor: 'black',
@@ -316,10 +339,10 @@ const HomePage = props => {
                 height: '200px',
                 border: 'none', 
                 background: 'white'}}> 
-                  <a style={{ fontWeight: 'bold', fontSize: '28px', marginBottom: '25px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif' }}>About Us</a>
-                  <a style={{ cursor: 'pointer', fontSize: '20px', marginBottom: '20px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif'}} onClick={handleClick}>Our Company</a>
-                  <a style={{ cursor: 'pointer', fontSize: '20px', marginBottom: '20px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif' }} onClick={handleClickCoffee}>Our Coffee</a>
-                  <a style={{ cursor: 'pointer', fontSize: '20px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif' }} onClick={handleClickContact}>Contact</a>
+                  <a style={{ fontWeight: 'bold', fontSize: `${fontSize}px`, marginBottom: '25px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif' }}>About Us</a>
+                  <a style={{ cursor: 'pointer', fontSize: `${fontSize}px`, marginBottom: '20px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif'}} onClick={handleClick}>Our Company</a>
+                  <a style={{ cursor: 'pointer', fontSize: `${fontSize}px`, marginBottom: '20px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif' }} onClick={handleClickCoffee}>Our Coffee</a>
+                  <a style={{ cursor: 'pointer', fontSize: `${fontSize}px`, fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif' }} onClick={handleClickContact}>Contact</a>
                 </div>
               <div style={{
                 display: 'flex',
@@ -330,7 +353,7 @@ const HomePage = props => {
                 background: 'white',
 
                 }}> 
-                <a style={{ fontWeight: 'bold', fontSize: '28px', marginBottom: '25px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif' }}>Social Media</a>
+                <a style={{ fontWeight: 'bold', fontSize: `${fontSize}px`, marginBottom: '25px', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontSize: `${fontSize}px`}}>Social Media</a>
                 <div style={{ width: '100%',
                 height: '100px', background: 'white'}} >
                   <a href="https://open.spotify.com/user/starbucks"><img src={require('../images/spotify.png')} alt="Image 1"></img></a>
@@ -353,18 +376,22 @@ const HomePage = props => {
 
                 }}>
                   <div style={{marginBottom: '25px'}} >
-                    <a style={{cursor: 'pointer', marginRight: '15px', textDecoration: 'none', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif'}} onClick={handleClickPN}>Privacy Notice</a> 
+                    <a style={{cursor: 'pointer', marginRight: '15px', textDecoration: 'none', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontSize: `${fontSize}px`}} onClick={handleClickPN}>Privacy Notice</a> 
                     <text> | </text>
-                    <a style={{cursor: 'pointer', marginLeft: '15px', textDecoration: 'none', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif'}} onClick={handleClickTerms}>Terms of Use</a>
+                    <a style={{cursor: 'pointer', marginLeft: '15px', textDecoration: 'none', fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontSize: `${fontSize}px`}} onClick={handleClickTerms}>Terms of Use</a>
                   </div>
                   <div>
-                    <text style = {{fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif'}}>© 2023 Starbucks Coffee Company. All rights reserved.</text>
+                    <text style = {{fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontSize: `${fontSize}px`}}>© 2023 Starbucks Coffee Company. All rights reserved.</text>
                   </div>
                   
               </div>
         </div>
       </EndDiv>
     <BottomDiv>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px', marginRight: '400px' }}>
+              <button onClick={() => resizeFont(1)}>Increase font size</button>
+              <button onClick={() => resizeFont(-1)}>Decrease font size</button>
+        </div>
         <button 
           style={{ 
             border: 'none', 
@@ -377,10 +404,10 @@ const HomePage = props => {
             borderRadius: '50px',
             padding: '10px 20px',
             marginRight: '400px',
+            fontSize: `${fontSize}px`
           }}
-          onClick={() => window.location.href = "/menu"}
+            onClick={() => window.location.href = "/menu"}
           >
-
           Order Now
         </button>
         <BottomButton />

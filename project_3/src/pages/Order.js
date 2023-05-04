@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import '../style.css';
 import { useLocation } from 'react-router-dom';
-import {AddtoSales} from '../backend/server_functions';
+import {AddtoSales, UpdateInventory} from '../backend/server_functions';
 
 function Order() {
     const location = useLocation();
@@ -114,9 +114,10 @@ function Order() {
                         width: '140px'
                     }} onClick={() => {
                         const info = [currentDate, formattedDate, formattedTime, EmployeeID, CustomerID, total]
-
+                        
                         // console.log(info)
                         AddtoSales(info)
+                        UpdateInventory()
                         localStorage.removeItem("orderArray");
                         setOrderArray([]);
 

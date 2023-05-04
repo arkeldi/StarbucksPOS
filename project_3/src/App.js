@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Routes ,Route } from 'react-router-dom';
 
@@ -17,10 +17,44 @@ import MenuEmployee from './pages/MenuEmployee';
 import ProductEmployee from './pages/ProductEmployee';
 import OrderEmployee from './pages/OrderEmployee';
 import MenuScreen from './pages/MenuScreen';
+import LoginButton from './components/loginOAUTH';
+import LogoutButton from './components/logoutOAUTH';
+import {gapi} from 'gapi-script';
+import TextToSpeech from './components/TextToSpeech';
+import './components/colorblind.css';
 
-const App = ({ className }) => (
-  <div className={className}>
+const clientId = "1084493453935-kmj0oh3e6kl1dtintpt3kr74q3seutme.apps.googleusercontent.com";
+
+function App() {
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: "",
+      });
+    }
+    gapi.load('client:auth2', start);
+  }, []);
+
+  const [colorblindMode, setColorblindMode] = useState(false);
+
+  const toggleColorblindMode = () => {
+    setColorblindMode(!colorblindMode);
+  };
+
+  if (colorblindMode) {
+    document.body.classList.add('colorblind-mode');
+  } else {
+    document.body.classList.remove('colorblind-mode');
+  }
+
+  return (
+    <div className="App">
     <Navbar />
+      <TextToSpeech />
+      <button onClick={toggleColorblindMode}>
+        {colorblindMode ? 'Disable' : 'Enable'} Colorblind Mode
+      </button>
       <Routes>
       <Route exact path='/' element={<HomePage />} />
       <Route path='/AboutPage' element={<AboutPage />} />
@@ -37,9 +71,14 @@ const App = ({ className }) => (
       <Route path="/menuscreen" element={<MenuScreen/>} />
       <Route element={PageNotFound} />
     </Routes>
+    <div className="App1">
+        <LoginButton />
+        <LogoutButton />
+      </div>
   </div>
   
 );
+}
 
 
 export default styled(App)`

@@ -2,6 +2,9 @@ import React from 'react';
 import NavLink from './NavLink';
 import styled from 'styled-components';
 import logo from '../images/logo.png';
+import GoogleTranslate from './googletranslate';
+import getWeatherByCityName from './weather';
+
 const Navbar = ({ className }) => {
 
   const handleLogin = () => {
@@ -21,14 +24,28 @@ const Navbar = ({ className }) => {
         <div style={{ display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'space-between', marginTop: '15px' }}>
           <ul style={{ listStyle: 'none', display: 'flex', alignItems: 'center', margin: '0', padding: '0' }}>
             <li>
+              
               <NavLink to="/" style={{ fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '16px', marginLeft: '20px' }}>HOME</NavLink>
               <NavLink to="/menu" style={{ fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '16px', marginLeft: '20px' }}>MENU</NavLink>
               <NavLink to="/menuemployee" style={{ fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '16px', marginLeft: '20px' }}>EMPLOYEE</NavLink>
               <NavLink to="/manager" style={{ fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '16px', marginLeft: '20px' }}>MANAGER</NavLink>
               <NavLink to="/menuscreen" style={{ fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', fontWeight: 'bold', fontSize: '16px', marginLeft: '20px' }}>MENU SCREEN</NavLink>
             </li>
+            
           </ul>
-          <div style={{ marginRight: '50px' }}>
+          <div style={{ display: 'flex', marginRight: '50px' }}>
+          <div id="weather-info" style={{ 
+                border: 'none', 
+                background: 'black',
+                color: 'white',
+                cursor: 'pointer', 
+                fontFamily: 'SoDoSans,Helvetica Neue,Helvetica,Arial,sans-serif', 
+                fontWeight: 'bold', 
+                fontSize: '16px',
+                borderRadius: '50px',
+                padding: '10px 20px',
+                marginRight: '50px'
+              }}/>
             <button 
               style={{ 
                 border: 'none', 
@@ -43,8 +60,10 @@ const Navbar = ({ className }) => {
               }} onClick={handleLogin}>
               Log In
             </button>
+            
           </div>
         </div>
+        <GoogleTranslate />
       </div>
     </nav>
   );

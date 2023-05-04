@@ -316,6 +316,23 @@ function AddtoSales(info) {
   handleSubmit()
 }
 
+function UpdateInventory(info) {
+  // const [message, setMessage] = useState("");
+
+  async function handleSubmit() {
+    console.log(info[0])
+    const response = await fetch(`http://localhost:3001/update-inventory`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+      })
+    });
+    const data = await response.json();
+    console.log(data.message);
+  }
+  handleSubmit()
+}
+
 function SalesReport(start, end){
   return new Promise((resolve, reject) => {
     async function fetchInventoryItems() {
@@ -329,6 +346,6 @@ function SalesReport(start, end){
 
 export {GetInventoryList, GetCurrentInventoryList, GetProductsList, GetCustomizationsList, GetSalesList, GetOrdersList, GetEmployeesList
   , GetCustomersList, GetRecipesList, GetSizesList, AddtoInventory, AddtoCustomers, AddtoEmployees, AddtoProducts,
-  AddtoRecipes, SalesReport, AddtoSales
+  AddtoRecipes, SalesReport, AddtoSales, UpdateInventory
 };
 

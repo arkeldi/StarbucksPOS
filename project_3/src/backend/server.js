@@ -329,6 +329,21 @@ app.post('/add-sales', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+app.post('/update-inventory', async (req, res) => {
+  try{
+    const itemInfo = req.body; // assuming the JSON payload contains all necessary item info
+    const queryToUse =  `UPDATE inventory SET item_quantity = item_quantity - 1 WHERE id IN (10001, 10002, 10003);`
+    console.log(queryToUse)
+    const result = await pool.query(queryToUse);
+    res.json({ message: 'Inventory added successfully' });
+  }
+  catch(err){
+    console.error('Error adding item to database:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 app.get('/salesReport/:start/:end', async (req, res) => {
   try {
     const start = parseInt(req.params.start);
