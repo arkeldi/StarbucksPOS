@@ -1,5 +1,6 @@
 # Starbucks POS
 
+GitHub repo for Starbucks POS system
 
 - 💬 StarbucksPOS (found here: https://msc-starbucks-site.onrender.com/) is a project that four other programmers and I worked on to develop a comprehensive Point of Sales (POS) system specifically designed for Starbucks. The focus of this project was on product/menu customization and sales tracking. To accomplish this, we leveraged product IDs to manage inventory and analyze employee performance effectively.
 
